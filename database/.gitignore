@@ -1,0 +1,72 @@
+# --------------------------
+# Laravel Core
+# --------------------------
+/vendor/
+/node_modules/
+/public/storage
+/public/hot
+/storage/*.key
+/storage/logs/
+.storage/
+.phpunit.result.cache
+.env
+.env.backup
+.env.local
+.env.*.local
+Homestead.yaml
+Homestead.json
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.phpstorm.meta.php
+/bootstrap/cache/*.php
+!/bootstrap/cache/.gitignore
+/storage/pail/
+/storage/app/public/
+/storage/debugbar/
+
+# --------------------------
+# Laravel Sail (Docker)
+# --------------------------
+/docker-compose.override.yml
+/.env.sail
+/sail
+/.sail
+/var/
+/storage/framework/sessions/
+/storage/framework/views/
+/storage/framework/cache/
+
+# --------------------------
+# IDE / Editors
+# --------------------------
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# --------------------------
+# OS Generated Files
+# --------------------------
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# --------------------------
+# Tests
+# --------------------------
+/coverage/
+.phpunit.cache/
+
+# --------------------------
+# Divers
+# --------------------------
+auth.json
+*.log
