@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Address;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -13,6 +14,17 @@ return new class extends Migration
     {
         Schema::create('clients', function (Blueprint $table) {
             $table->id();
+            $table->string('contact_name');
+            $table->string('name')->nullable();
+            $table->string('email')->unique();
+            $table->string('company')->nullable();
+            $table->integer('phone');
+            $table->enum('type',[
+                'pro','private',
+            ]);
+            $table->string('siret')->unique();
+            $table->string('tva_intra')->unique();
+            $table->foreignIdFor(Address::class)->nullable()->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }
