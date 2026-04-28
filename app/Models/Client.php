@@ -21,7 +21,7 @@ use Illuminate\Support\Collection;
  * @property string|null $name
  * @property string $email
  * @property string|null $company
- * @property int $phone
+ * @property string $phone
  * @property Type $type
  * @property string $siret
  * @property string $tva_intra

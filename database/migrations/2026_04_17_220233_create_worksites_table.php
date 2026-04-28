@@ -17,13 +17,13 @@ return new class extends Migration
             $table->id();
             $table->string('code')->nullable();
             $table->string('name');
-            $table->string('description')->nullable();
+            $table->text('description')->nullable();
             $table->date('start_date')->nullable();
             $table->date('end_date')->nullable();
             $table->enum('priority',[
                 'low','medium','high','critical'
             ]);
-            $table->enum('statut',[
+            $table->enum('status',[
                 'pending','in_progress','finished', 'canceled'
             ]);
             $table->foreignIdFor(Client::class)->constrained()->cascadeOnDelete();

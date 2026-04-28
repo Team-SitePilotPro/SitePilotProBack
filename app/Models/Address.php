@@ -13,6 +13,7 @@ use Illuminate\Support\Collection;
  * - Attributes.
  *
  * @property int $id
+ * @property int $number
  * @property string $street
  * @property string $city
  * @property int $zip_code
@@ -28,7 +29,7 @@ class Address extends Model
     /** @use HasFactory<AddressFactory> */
     use HasFactory;
 
-    /**
+    /**<
      * @var array<int,string>
      */
     protected $guarded = ['id'];

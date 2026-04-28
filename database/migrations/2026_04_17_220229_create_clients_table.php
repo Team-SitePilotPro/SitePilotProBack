@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('name')->nullable();
             $table->string('email')->unique();
             $table->string('company')->nullable();
-            $table->integer('phone');
+            $table->string('phone');
             $table->enum('type',[
                 'pro','private',
             ]);
