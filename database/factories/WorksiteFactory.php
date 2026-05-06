@@ -28,7 +28,10 @@ class WorksiteFactory extends Factory
             'end_date' => $this->faker->optional()->dateTimeBetween('+1 year', '+2 years'),
             'priority' => $this->faker->randomElement(Priority::cases()),
             'status' => $this->faker->randomElement(Status::cases()),
-            'address_id' => Address::factory(),
+            'street' => $this->faker->streetAddress(),
+            'city' => $this->faker->city(),
+            'zip_code' => $this->faker->postcode(),
+            'country' => $this->faker->country(),
         ];
     }
 }

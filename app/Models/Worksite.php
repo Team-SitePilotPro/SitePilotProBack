@@ -7,7 +7,6 @@ namespace App\Models;
 use App\Enums\Priority;
 use App\Enums\Status;
 use Database\Factories\WorksiteFactory;
-use Illuminate\Database\Eloquent\Attributes\Guarded;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -24,12 +23,15 @@ use Illuminate\Support\Carbon;
  * @property Carbon|null $end_date
  * @property Priority $priority
  * @property Status $status
+ * @property string $street
+ * @property string $city
+ * @property int $zip_code
+ * @property string $country
  * @property Carbon $created_at
  * @property Carbon $updated_at
  *
  * - Relations.
  * @property Client $client
- * @property Address|null $address
  */
 
 class Worksite extends Model
@@ -45,10 +47,5 @@ class Worksite extends Model
     public function client(): BelongsTo
     {
         return $this->belongsTo(Client::class);
-    }
-
-    public function address(): BelongsTo
-    {
-        return $this->belongsTo(Address::class);
     }
 }

@@ -22,6 +22,10 @@ use Illuminate\Support\Collection;
  * @property string $email
  * @property string|null $company
  * @property string $phone
+ * @property string $street
+ * @property string $city
+ * @property int $zip_code
+ * @property string $country
  * @property Type $type
  * @property string $siret
  * @property string $tva_intra
@@ -30,7 +34,6 @@ use Illuminate\Support\Collection;
  *
  * - Relations.
  * @property Collection<int,Worksite>|null $worksites
- * @property Address|null $address
  */
 
 class Client extends Model
@@ -46,10 +49,5 @@ class Client extends Model
     public function worksites(): HasMany
     {
         return $this->hasMany(Worksite::class);
-    }
-
-    public function address(): BelongsTo
-    {
-        return $this->belongsTo(Address::class);
     }
 }

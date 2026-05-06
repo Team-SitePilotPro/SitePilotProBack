@@ -28,7 +28,10 @@ class ClientFactory extends Factory
             'type' => $this->faker->randomElement(Type::cases()),
             'siret' => $this->faker->unique()->siret(),
             'tva_intra' => $this->faker->unique()->vat(),
-            'address_id' => Address::factory(),
+            'street' => $this->faker->streetAddress(),
+            'city' => $this->faker->city(),
+            'zip_code' => $this->faker->postcode(),
+            'country' => $this->faker->country(),
         ];
     }
 }

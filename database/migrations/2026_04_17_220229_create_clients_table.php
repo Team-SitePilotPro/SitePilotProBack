@@ -22,9 +22,12 @@ return new class extends Migration
             $table->enum('type',[
                 'pro','private',
             ]);
+            $table->string('street');
+            $table->string('city');
+            $table->integer('zip_code');
+            $table->string('country')->default('France');
             $table->string('siret')->unique();
             $table->string('tva_intra')->unique();
-            $table->foreignIdFor(Address::class)->nullable()->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }

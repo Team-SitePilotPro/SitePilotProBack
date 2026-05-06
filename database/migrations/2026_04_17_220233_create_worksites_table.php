@@ -26,8 +26,11 @@ return new class extends Migration
             $table->enum('status',[
                 'pending','in_progress','finished', 'canceled'
             ]);
+            $table->string('street');
+            $table->string('city');
+            $table->integer('zip_code');
+            $table->string('country')->default('France');
             $table->foreignIdFor(Client::class)->constrained()->cascadeOnDelete();
-            $table->foreignIdFor(Address::class)->nullable()->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }
