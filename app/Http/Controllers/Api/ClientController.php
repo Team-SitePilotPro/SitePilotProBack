@@ -75,6 +75,7 @@ class ClientController extends Controller
             ->response();
     }
 
+    
     /// Supprime un client.
     public function destroy(Client $client): JsonResponse
     {

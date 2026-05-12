@@ -10,6 +10,7 @@ use Illuminate\Validation\Rules\Enum;
 
 class ClientRequest extends FormRequest
 {
+    
     //Autorise la requête.
     public function authorize(): bool
     {

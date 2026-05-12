@@ -54,6 +54,7 @@ class WorksiteController extends Controller
             ->setStatusCode(Response::HTTP_CREATED);
 
     }
+    
     // Met à jour un chantier existant.
     public function update(
         Worksite $worksite,

@@ -14,7 +14,7 @@ class ClientResource extends JsonResource
 {
     /**
      * Transforme le client en tableau JSON.
-     *
+     
      * @return array<string,mixed>
      */
     public function toArray(Request $request): array

@@ -55,7 +55,6 @@ class ClientService
             'siret' => $clientDto->siret,
             'tva_intra' => $clientDto->tvaIntra,
         ]);
-
         return $client->refresh();
     }
 }
