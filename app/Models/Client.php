@@ -46,6 +46,7 @@ class Client extends Model
      */
     protected $guarded = ['id'];
 
+    /// Relations.
     public function worksites(): HasMany
     {
         return $this->hasMany(Worksite::class);
