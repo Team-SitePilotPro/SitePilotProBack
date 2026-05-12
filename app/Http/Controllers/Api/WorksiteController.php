@@ -60,40 +60,17 @@ class WorksiteController extends Controller
         WorksiteRequest $worksiteRequest
     ): JsonResponse
     {
-
-        $worksiteDto = WorksiteDto::fromArray(
-            array_merge(
-                $worksiteRequest->safe([
-                    'client_id',
-                    'name',
-                    'description',
-                    'start_date',
-                    'end_date',
-                    'priority',
-                    'status',
-                ]),
-                [
-                    'address' => AddressDto::fromArray(
-                        $worksiteRequest->safe([
-                            'address.number',
-                            'address.street',
-                            'address.city',
-                            'address.zip_code',
-                        ])
-                    ),
-                ],
-            )
-        );
+        $validated = $worksiteRequest->safe()->toArray();
 
         /** @var Worksite $updateWorksite */
         $updateWorksite = DB::transaction(
             fn() => $this->worksiteService->update(
                 $worksite,
-                $worksiteDto
+                WorksiteDto::fromArray($validated)
             )
         );
 
-        $updateWorksite->loadMissing('client', 'address');
+        $updateWorksite->loadMissing('client');
 
         return WorksiteResource::make($updateWorksite)
             ->response()
@@ -102,7 +79,6 @@ class WorksiteController extends Controller
 
     public function destroy(Worksite $worksite): JsonResponse
     {
-        $worksite->address()->delete();
         $worksite->delete();
 
         return response()->json(null, Response::HTTP_NO_CONTENT);
