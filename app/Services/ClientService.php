@@ -10,9 +10,8 @@ use Illuminate\Database\Eloquent\Collection;
 
 class ClientService
 {
-    /**
-     * Retourne la liste de tous les clients.
-     */
+    
+    // Retourne la liste de tous les clients.
     public function list(): Collection
     {
         return Client::query()
@@ -20,9 +19,7 @@ class ClientService
             ->get();
     }
 
-    /**
-     * Crée un nouveau client.
-     */
+    // Crée un nouveau client.
     public function store(ClientDto $clientDto): Client
     {
         return Client::query()->create([
@@ -41,9 +38,7 @@ class ClientService
         ]);
     }
 
-    /**
-     * Met à jour un client existant.
-     */
+    // Met à jour un client existant.
     public function update(Client $client, ClientDto $clientDto): Client
     {
         $client->update([

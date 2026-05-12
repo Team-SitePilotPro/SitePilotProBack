@@ -16,10 +16,12 @@ use Symfony\Component\HttpFoundation\Response;
 
 class ClientController extends Controller
 {
+    /// Constructeur avec injection de dépendance du service ClientService.
     public function __construct(
         private readonly ClientService $clientService,
     ) {}
 
+    /// Retourne la liste de tous les clients.
     public function index(): JsonResponse
     {
         return ClientResource::collection(
@@ -27,11 +29,13 @@ class ClientController extends Controller
         )->response();
     }
 
+    /// Affiche les détails d'un client spécifique.
     public function show(Client $client): JsonResponse
     {
         return ClientResource::make($client)->response();
     }
 
+    /// Crée un nouveau client.
     public function store(ClientRequest $clientRequest): JsonResponse
     {
         $validated = $clientRequest->safe()->toArray();
@@ -43,11 +47,13 @@ class ClientController extends Controller
             )
         );
 
+        // Retourne le client créé avec un code de statut 201 (Created).
         return ClientResource::make($createdClient)
             ->response()
             ->setStatusCode(Response::HTTP_CREATED);
     }
 
+    /// Met à jour un client existant.
     public function update(
         Client $client,
         ClientRequest $clientRequest
@@ -69,6 +75,7 @@ class ClientController extends Controller
             ->response();
     }
 
+    /// Supprime un client.
     public function destroy(Client $client): JsonResponse
     {
         $client->delete();
