@@ -1,6 +1,7 @@
 <?php
 
-use App\Models\Address;
+use App\Enums\WorksitePriority;
+use App\Enums\WorksiteStatus;
 use App\Models\Client;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -13,25 +14,28 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('worksites', function (Blueprint $table) {
+        Schema::create('worksites', function (Blueprint $table): void {
             $table->id();
+            $table->foreignIdFor(Client::class)
+                ->constrained()
+                ->cascadeOnDelete();
             $table->string('code')->nullable();
-            $table->string('name');
+            $table->string('name_worksite');
             $table->text('description')->nullable();
-            $table->date('start_date')->nullable();
-            $table->date('end_date')->nullable();
-            $table->enum('priority',[
-                'low','medium','high','critical'
-            ]);
-            $table->enum('status',[
-                'pending','in_progress','finished', 'canceled'
-            ]);
+            $table->dateTime('start_date')->nullable();
+            $table->dateTime('end_date')->nullable();
+            $table->enum(
+                'worksite_priority', array_column(WorksitePriority::cases(), 'value')
+            );
+            $table->enum(
+                'worksite_status', array_column(WorksiteStatus::cases(), 'value')
+            )->default(WorksiteStatus::Pending->value);
             $table->string('street');
             $table->string('city');
             $table->integer('zip_code');
             $table->string('country')->default('France');
-            $table->foreignIdFor(Client::class)->constrained()->cascadeOnDelete();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

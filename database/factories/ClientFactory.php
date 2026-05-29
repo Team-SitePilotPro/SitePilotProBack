@@ -2,9 +2,9 @@
 
 namespace Database\Factories;
 
-use App\Enums\Type;
-use App\Models\Address;
+use App\Enums\ClientType;
 use App\Models\Client;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -21,17 +21,31 @@ class ClientFactory extends Factory
     {
         return [
             'contact_name' => $this->faker->name(),
-            'name' => null,
-            'email' => $this->faker->unique()->safeEmail(),
-            'phone' => $this->faker->mobileNumber(),
-            'company' => $this->faker->company(),
-            'type' => $this->faker->randomElement(Type::cases()),
-            'siret' => $this->faker->unique()->siret(),
-            'tva_intra' => $this->faker->unique()->vat(),
-            'street' => $this->faker->streetAddress(),
-            'city' => $this->faker->city(),
-            'zip_code' => $this->faker->postcode(),
-            'country' => $this->faker->country(),
+            'private_name' => null,
+            'email'        => $this->faker->unique()->companyEmail(),
+            'phone'        => $this->faker->numerify('06########'),
+            'company'      => $this->faker->company(),
+            'clientType'   => ClientType::Pro,
+            'siret'        => $this->faker->unique()->siret(),
+            'tva_intra'    => $this->faker->unique()->vat(),
+            'street'       => $this->faker->streetAddress(),
+            'city'         => $this->faker->city(),
+            'zip_code'     => $this->faker->postcode(),
+            'country'      => 'France',
+            'user_id'       => User::factory(),
         ];
+    }
+
+    public function professional(): static
+    {
+        return $this->state(static fn () => ['type' => ClientType::Pro->value]);
+    }
+
+    public function individual(): static
+    {
+        return $this->state(fn () => [
+            'type'    => ClientType::Private->value,
+            'company' => null,
+        ]);
     }
 }
