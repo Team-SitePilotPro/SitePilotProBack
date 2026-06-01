@@ -50,4 +50,5 @@ class Client extends Model
     {
         return $this->hasMany(Worksite::class);
     }
+    
 }

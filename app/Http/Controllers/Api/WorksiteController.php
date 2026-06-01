@@ -54,14 +54,15 @@ class WorksiteController extends Controller
             ->setStatusCode(Response::HTTP_CREATED);
 
     }
-
+    
+    // Met à jour un chantier existant.
     public function update(
         Worksite $worksite,
         WorksiteRequest $worksiteRequest
     ): JsonResponse
     {
         $validated = $worksiteRequest->safe()->toArray();
-
+        // Crée un DTO d'adresse à partir des données validées
         /** @var Worksite $updateWorksite */
         $updateWorksite = DB::transaction(
             fn() => $this->worksiteService->update(
@@ -69,7 +70,7 @@ class WorksiteController extends Controller
                 WorksiteDto::fromArray($validated)
             )
         );
-
+        // Charge la relation client si elle n'est pas déjà chargée
         $updateWorksite->loadMissing('client');
 
         return WorksiteResource::make($updateWorksite)
@@ -77,6 +78,7 @@ class WorksiteController extends Controller
             ->setStatusCode(Response::HTTP_CREATED);
     }
 
+    // Supprime un chantier.
     public function destroy(Worksite $worksite): JsonResponse
     {
         $worksite->delete();
