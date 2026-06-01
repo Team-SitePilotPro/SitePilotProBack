@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Enums;
 
-enum Type: string
+enum ClientType: string
 {
     case Pro = 'pro';
     case Private = 'private';
@@ -18,3 +18,5 @@ enum Type: string
     }
 
 }
+
+

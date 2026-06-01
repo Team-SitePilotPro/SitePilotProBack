@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Enums;
 
-enum Status: string
+enum WorksiteStatus: string
 {
     case Pending = 'pending';
     case InProgress = 'in_progress';
