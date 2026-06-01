@@ -1,79 +1,69 @@
 <?php
 
-namespace App\Http\Controllers;
+declare(strict_types=1);
 
-use App\Models\User;
+namespace App\Http\Controllers\Api;
+
+use App\Dto\UserDto;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
+use App\Http\Resources\User\UserResource;
+use App\Models\User;
+use App\Services\UserService;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\DB;
+use Symfony\Component\HttpFoundation\Response;
 
 class UserController extends Controller
 {
-    /**
-     * Display a listing of users.
-     */
+    public function __construct(
+        private readonly UserService $userService,
+    ) {}
+
     public function index(): JsonResponse
     {
-        $users = User::all();
-        return response()->json([
-            'success' => true,
-            'data' => $users,
-            'message' => 'Utilisateurs récupérés avec succès.',
-        ]);
+        return UserResource::collection(
+            $this->userService->list()
+        )->response();
     }
 
-    /**
-     * Store a newly created user in storage.
-     */
-    public function store(StoreUserRequest $request): JsonResponse
-    {
-        $user = User::create($request->validated());
-
-        return response()->json([
-            'success' => true,
-            'data' => $user,
-            'message' => 'Utilisateur créé avec succès.',
-        ], 201);
-    }
-
-    /**
-     * Display the specified user.
-     */
     public function show(User $user): JsonResponse
     {
-        return response()->json([
-            'success' => true,
-            'data' => $user,
-            'message' => 'Utilisateur récupéré avec succès.',
-        ]);
+        return UserResource::make($user)->response();
     }
 
-    /**
-     * Update the specified user in storage.
-     */
+    public function store(StoreUserRequest $request): JsonResponse
+    {
+        /** @var User $user */
+        $user = DB::transaction(
+            fn() => $this->userService->store(
+                UserDto::fromArray($request->safe()->toArray())
+            )
+        );
+
+        return UserResource::make($user)
+            ->response()
+            ->setStatusCode(Response::HTTP_CREATED);
+    }
+
     public function update(UpdateUserRequest $request, User $user): JsonResponse
     {
-        $validated = $request->validated();
-        
-        $user->update($validated);
+        /** @var User $updatedUser */
+        $updatedUser = DB::transaction(
+            fn() => $this->userService->update(
+                $user,
+                UserDto::fromArray($request->safe()->toArray())
+            )
+        );
 
-        return response()->json([
-            'success' => true,
-            'data' => $user,
-            'message' => 'Utilisateur mis à jour avec succès.',
-        ]);
+        return UserResource::make($updatedUser)->response();
     }
 
-    /**
-     * Remove the specified user from storage.
-     */
     public function destroy(User $user): JsonResponse
     {
         $user->delete();
 
-        return response()->json([
-            'success' => true,
-            'message' => 'Utilisateur supprimé avec succès.',
-        ]);
+        return response()->json(null, Response::HTTP_NO_CONTENT);
     }
 }

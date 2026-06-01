@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use App\Http\Controllers\Api\ClientController;
+use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\WorksiteController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
