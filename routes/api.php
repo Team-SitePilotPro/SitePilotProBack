@@ -20,4 +20,6 @@ Route::prefix('v1')->name('v1.')->group(function () {
 
     //Routes API des clients
     Route::apiResource('clients', ClientController::class);
+
+    Route::apiResource('users', UserController::class);
 });
