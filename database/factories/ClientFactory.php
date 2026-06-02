@@ -22,17 +22,17 @@ class ClientFactory extends Factory
         return [
             'contact_name' => $this->faker->name(),
             'private_name' => null,
-            'email'        => $this->faker->unique()->companyEmail(),
-            'phone'        => $this->faker->numerify('06########'),
-            'company'      => $this->faker->company(),
-            'clientType'   => ClientType::Pro,
-            'siret'        => $this->faker->unique()->siret(),
-            'tva_intra'    => $this->faker->unique()->vat(),
-            'street'       => $this->faker->streetAddress(),
-            'city'         => $this->faker->city(),
-            'zip_code'     => $this->faker->postcode(),
-            'country'      => 'France',
-            'user_id'       => User::factory(),
+            'email' => $this->faker->unique()->companyEmail(),
+            'phone' => $this->faker->numerify('06########'),
+            'company' => $this->faker->company(),
+            'clientType' => ClientType::Pro,
+            'siret' => $this->faker->unique()->siret(),
+            'tva_intra' => $this->faker->unique()->vat(),
+            'street' => $this->faker->streetAddress(),
+            'city' => $this->faker->city(),
+            'zip_code' => $this->faker->postcode(),
+            'country' => 'France',
+            'user_id' => User::factory(),
         ];
     }
 
@@ -44,7 +44,7 @@ class ClientFactory extends Factory
     public function individual(): static
     {
         return $this->state(fn () => [
-            'type'    => ClientType::Private->value,
+            'type' => ClientType::Private->value,
             'company' => null,
         ]);
     }

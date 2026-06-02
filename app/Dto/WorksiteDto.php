@@ -12,19 +12,19 @@ use Illuminate\Support\Carbon;
 final readonly class WorksiteDto
 {
     public function __construct(
-        public  int              $client_id,
-        public  string           $name,
-        public  ?string          $description,
-        public  ?Carbon          $start_date,
-        public  ?Carbon          $end_date,
-        public  WorksitePriority $priority,
-        public  WorksiteStatus   $status,
-        public  string           $street,
-        public  string           $city,
-        public  int              $zip_code,
-        public  string           $country,
+        public int $client_id,
+        public string $name,
+        public ?string $description,
+        public ?Carbon $start_date,
+        public ?Carbon $end_date,
+        public WorksitePriority $priority,
+        public WorksiteStatus $status,
+        public string $street,
+        public string $city,
+        public int $zip_code,
+        public string $country,
 
-    ){}
+    ) {}
 
     /**
      * @param  array<string,scalar|null>|ArrayAccess  $data

@@ -10,14 +10,13 @@ use Illuminate\Validation\Rules\Enum;
 
 class ClientRequest extends FormRequest
 {
-    
-    //Autorise la requête.
+    // Autorise la requête.
     public function authorize(): bool
     {
         return true;
     }
 
-    //Règles de validation des données client.
+    // Règles de validation des données client.
     /**
      * @return array<string, array<int,string|Enum>>
      */

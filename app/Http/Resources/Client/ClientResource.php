@@ -3,18 +3,21 @@
 declare(strict_types=1);
 
 namespace App\Http\Resources\Client;
+
 // Importation des classes nécessaires.
+use App\Models\Client;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 /**
- * @mixin \App\Models\Client
+ * @mixin Client
  */
 class ClientResource extends JsonResource
 {
     /**
      * Transforme le client en tableau JSON.
-     
+
+     *
      * @return array<string,mixed>
      */
     public function toArray(Request $request): array

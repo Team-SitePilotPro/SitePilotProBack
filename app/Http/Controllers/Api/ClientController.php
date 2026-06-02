@@ -38,7 +38,7 @@ class ClientController extends Controller
 
         /** @var Client $createdClient */
         $createdClient = DB::transaction(
-            fn() => $this->clientService->store(
+            fn () => $this->clientService->store(
                 ClientDto::fromArray($validated)
             )
         );
@@ -51,15 +51,14 @@ class ClientController extends Controller
     public function update(
         Client $client,
         ClientRequest $clientRequest
-    ): JsonResponse
-    {
+    ): JsonResponse {
         $clientDto = ClientDto::fromArray(
             $clientRequest->safe()->toArray()
         );
 
         /** @var Client $updatedClient */
         $updatedClient = DB::transaction(
-            fn() => $this->clientService->update(
+            fn () => $this->clientService->update(
                 $client,
                 $clientDto
             )

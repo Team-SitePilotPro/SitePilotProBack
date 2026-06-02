@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Actions\Worksite;
 
 use App\Dto\WorksiteDto;
-use App\Models\Address;
 use App\Models\Worksite;
 use Random\RandomException;
 
@@ -17,11 +16,10 @@ final class UpdateWorksiteAction
     public function __invoke(
         Worksite $worksite,
         WorksiteDto $worksiteDto,
-    ): Worksite
-    {
+    ): Worksite {
         $worksite->query()->update([
             'client_id' => $worksiteDto->client_id,
-            'code' => $worksiteDto->code ?? 'FR' . random_int(10000, 99999) . 'A',
+            'code' => $worksiteDto->code ?? 'FR'.random_int(10000, 99999).'A',
             'name' => $worksiteDto->name,
             'description' => $worksiteDto->description,
             'start_date' => $worksiteDto->start_date,

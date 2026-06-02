@@ -4,7 +4,6 @@ namespace Database\Factories;
 
 use App\Enums\WorksitePriority;
 use App\Enums\WorksiteStatus;
-use App\Models\Address;
 use App\Models\Worksite;
 use Illuminate\Database\Eloquent\Factories\Factory;
 

@@ -12,9 +12,7 @@ use Illuminate\Validation\Rule;
 
 class WorksiteRequest extends FormRequest
 {
-
     /**
-     *
      * @return array<string, ValidationRule|array|string>
      */
     public function rules(): array
@@ -23,7 +21,7 @@ class WorksiteRequest extends FormRequest
             'client_id' => [
                 'required',
                 'integer',
-                'exists:clients,id'
+                'exists:clients,id',
             ],
             'name' => [
                 'nullable',
@@ -39,38 +37,38 @@ class WorksiteRequest extends FormRequest
             ],
             'start_date' => [
                 'nullable',
-                'date'
+                'date',
             ],
             'end_date' => [
                 'nullable',
-                'date'
+                'date',
             ],
             'priority' => [
                 'required',
-                Rule::enum(WorksitePriority::class)
+                Rule::enum(WorksitePriority::class),
             ],
             'status' => [
                 'required',
-                Rule::enum(WorksiteStatus::class)
+                Rule::enum(WorksiteStatus::class),
             ],
             'street' => [
                 'nullable',
                 'string',
-                'max:55'
+                'max:55',
             ],
             'city' => [
                 'nullable',
                 'string',
-                'max:25'
+                'max:25',
             ],
             'zip_code' => [
                 'nullable',
-                'integer'
+                'integer',
             ],
             'country' => [
                 'nullable',
                 'string',
-                'max:25'
+                'max:25',
             ],
         ];
     }
@@ -95,4 +93,3 @@ class WorksiteRequest extends FormRequest
         ];
     }
 }
-

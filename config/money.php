@@ -2,7 +2,7 @@
 
 return [
     'currency' => env('MONEY_DEFAULT_CURRENCY', 'EUR'),
-    'locale'   => 'fr_FR',
+    'locale' => 'fr_FR',
     'currencies' => [
         'EUR' => [
             'name' => 'Euro',

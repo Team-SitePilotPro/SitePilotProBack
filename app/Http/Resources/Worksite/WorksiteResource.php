@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Http\Resources\Worksite;
 
-use App\Http\Resources\Address\AddressResource;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -22,7 +21,7 @@ class WorksiteResource extends JsonResource
             'client' => $this
                 ->whenLoaded(
                     'client',
-                    fn() => $this
+                    fn () => $this
                         ->resource
                         ->client->contact_name)
             ?? 'Client not found',

@@ -26,7 +26,7 @@ class ClientDto
     /**
      * Création du DTO à partir d'un tableau.
      *
-     * @param array<string,mixed> $data
+     * @param  array<string,mixed>  $data
      */
     public static function fromArray(array $data): self
     {

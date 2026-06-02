@@ -2,17 +2,17 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Seeder;
-use App\Models\User;
 use App\Models\Client;
-use App\Models\Worksite;
-use App\Models\Quote;
-use App\Models\ProductLine;
 use App\Models\InvoiceClient;
-use App\Models\InvoiceSupplier;
-use App\Models\InvoiceSubcontractor;
 use App\Models\InvoiceOther;
+use App\Models\InvoiceSubcontractor;
+use App\Models\InvoiceSupplier;
+use App\Models\ProductLine;
+use App\Models\Quote;
+use App\Models\User;
 use App\Models\Workforce;
+use App\Models\Worksite;
+use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -58,10 +58,10 @@ class DatabaseSeeder extends Seeder
         });
 
         // ── Factures client ───────────────────────────
-        $worksites->each(function (Worksite $worksite) use ($clients) {
+        $worksites->each(function (Worksite $worksite) {
             InvoiceClient::factory()->create([
                 'worksite_id' => $worksite->id,
-                'client_id'   => $worksite->client_id,
+                'client_id' => $worksite->client_id,
             ]);
         });
 
@@ -87,7 +87,7 @@ class DatabaseSeeder extends Seeder
         });
 
         // ── Main d'oeuvre ──────────────────────────────
-        $worksites->each(function (Worksite $worksite) use ($admin) {
+        $worksites->each(function (Worksite $worksite) {
             Workforce::factory(rand(2, 6))->create([
                 'worksite_id' => $worksite->id,
             ]);

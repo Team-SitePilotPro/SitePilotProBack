@@ -40,7 +40,6 @@ use Illuminate\Support\Collection;
  * @property Collection<int,InvoiceClient>|null $invoicesClient
  * @property User $user
  */
-
 class Client extends Model
 {
     /** @use HasFactory<ClientFactory> */

@@ -12,7 +12,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('invoice_suppliers', function (Blueprint $table): void  {
+        Schema::create('invoice_suppliers', function (Blueprint $table): void {
             $table->id();
             $table->foreignIdFor(Worksite::class)
                 ->constrained()

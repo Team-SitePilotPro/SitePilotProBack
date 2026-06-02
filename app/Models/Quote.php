@@ -35,7 +35,6 @@ use Illuminate\Support\Carbon;
  * - Relations.
  * @property Client $client
  */
-
 class Quote extends Model
 {
     /** @use HasFactory<QuoteFactory> */
@@ -49,14 +48,14 @@ class Quote extends Model
     protected function casts(): array
     {
         return [
-            'quote_number'  => 'string',
-            'issue_date'    => 'datetime',
+            'quote_number' => 'string',
+            'issue_date' => 'datetime',
             'validity_date' => 'datetime',
-            'quote_status'  => QuoteStatus::class,
-            'tva_rate'      => TvaRate::class,
-            'subtotal_ht'   => MoneyIntegerCast::class,
-            'total_ttc'     => MoneyIntegerCast::class,
-            'tva_amount'    => MoneyIntegerCast::class,
+            'quote_status' => QuoteStatus::class,
+            'tva_rate' => TvaRate::class,
+            'subtotal_ht' => MoneyIntegerCast::class,
+            'total_ttc' => MoneyIntegerCast::class,
+            'tva_amount' => MoneyIntegerCast::class,
         ];
     }
 

@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Api;
 
-use App\Dto\AddressDto;
 use App\Dto\WorksiteDto;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\WorksiteRequest;
@@ -19,7 +18,7 @@ class WorksiteController extends Controller
 {
     public function __construct(
         private readonly WorksiteService $worksiteService,
-    ){}
+    ) {}
 
     public function index(): JsonResponse
     {
@@ -40,9 +39,9 @@ class WorksiteController extends Controller
     {
         $validated = $worksiteRequest->safe()->toArray();
 
-        /** @var Worksite $createWorksite*/
-        $createdWorksite= DB::transaction(
-            fn() => $this->worksiteService->store(
+        /** @var Worksite $createWorksite */
+        $createdWorksite = DB::transaction(
+            fn () => $this->worksiteService->store(
                 WorksiteDto::fromArray($validated)
             )
         );
@@ -54,18 +53,17 @@ class WorksiteController extends Controller
             ->setStatusCode(Response::HTTP_CREATED);
 
     }
-    
+
     // Met à jour un chantier existant.
     public function update(
         Worksite $worksite,
         WorksiteRequest $worksiteRequest
-    ): JsonResponse
-    {
+    ): JsonResponse {
         $validated = $worksiteRequest->safe()->toArray();
         // Crée un DTO d'adresse à partir des données validées
         /** @var Worksite $updateWorksite */
         $updateWorksite = DB::transaction(
-            fn() => $this->worksiteService->update(
+            fn () => $this->worksiteService->update(
                 $worksite,
                 WorksiteDto::fromArray($validated)
             )

@@ -27,7 +27,6 @@ use Illuminate\Support\Collection;
  * - Relations.
  * @property Collection<int,Worksite>|null $worksite
  */
-
 class InvoiceSubcontractor extends Model
 {
     /** @use HasFactory<InvoiceSubcontractorFactory> */
@@ -41,9 +40,9 @@ class InvoiceSubcontractor extends Model
     protected function casts(): array
     {
         return [
-            'delivery_date'  => 'datetime',
+            'delivery_date' => 'datetime',
             'purchase_price' => MoneyIntegerCast::class,
-            'cost_price'     => MoneyIntegerCast::class,
+            'cost_price' => MoneyIntegerCast::class,
         ];
     }
 

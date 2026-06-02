@@ -10,7 +10,6 @@ use Illuminate\Database\Eloquent\Collection;
 
 class ClientService
 {
-    
     // Retourne la liste de tous les clients.
     public function list(): Collection
     {
@@ -55,6 +54,7 @@ class ClientService
             'siret' => $clientDto->siret,
             'tva_intra' => $clientDto->tvaIntra,
         ]);
+
         return $client->refresh();
     }
 }

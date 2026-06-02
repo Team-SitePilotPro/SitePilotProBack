@@ -42,9 +42,9 @@ class InvoiceOther extends Model
     protected function casts(): array
     {
         return [
-            'delivery_date'  => 'datetime',
+            'delivery_date' => 'datetime',
             'purchase_price' => MoneyIntegerCast::class,
-            'cost_price'     => MoneyIntegerCast::class,
+            'cost_price' => MoneyIntegerCast::class,
         ];
     }
 

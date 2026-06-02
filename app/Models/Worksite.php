@@ -35,7 +35,6 @@ use Illuminate\Support\Carbon;
  * - Relations.
  * @property Client $client
  */
-
 class Worksite extends Model
 {
     /** @use HasFactory<WorksiteFactory> */
@@ -49,17 +48,17 @@ class Worksite extends Model
     protected function casts(): array
     {
         return [
-            'code'       => 'string',
+            'code' => 'string',
             'name_worksite' => 'string',
             'description' => 'string',
             'start_date' => 'datetime',
-            'end_date'   => 'datetime',
+            'end_date' => 'datetime',
             'worksite_priority' => WorksitePriority::class,
             'worksite_status' => WorksiteStatus::class,
-            'street'     => 'string',
-            'city'       => 'string',
-            'zip_code'   => 'integer',
-            'country'    => 'string',
+            'street' => 'string',
+            'city' => 'string',
+            'zip_code' => 'integer',
+            'country' => 'string',
         ];
     }
 

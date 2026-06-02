@@ -47,13 +47,14 @@ class ProductLine extends Model
     protected function casts(): array
     {
         return [
-            'unit'          => Unit::class,
+            'unit' => Unit::class,
             'unit_price_ht' => MoneyIntegerCast::class,
-            'tva_rate'      => TvaRate::class,
-            'total_ht'      => MoneyIntegerCast::class,
-            'total_ttc'     => MoneyIntegerCast::class,
+            'tva_rate' => TvaRate::class,
+            'total_ht' => MoneyIntegerCast::class,
+            'total_ttc' => MoneyIntegerCast::class,
         ];
     }
+
     public function quote(): BelongsTo
     {
         return $this->belongsTo(Quote::class);

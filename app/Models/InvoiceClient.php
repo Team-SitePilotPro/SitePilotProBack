@@ -48,9 +48,9 @@ class InvoiceClient extends Model
     protected function casts(): array
     {
         return [
-            'delivery_date'  => 'datetime',
-            'total_ht'       => MoneyIntegerCast::class,
-            'payment_date'   => 'datetime',
+            'delivery_date' => 'datetime',
+            'total_ht' => MoneyIntegerCast::class,
+            'payment_date' => 'datetime',
             'payment_status' => PaymentStatus::class,
             'payment_method' => PaymentMethod::class,
         ];
