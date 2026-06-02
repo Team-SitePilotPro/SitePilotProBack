@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Http\Requests;
 
-use App\Enums\Priority;
-use App\Enums\Status;
+use App\Enums\WorksitePriority;
+use App\Enums\WorksiteStatus;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
@@ -47,11 +47,11 @@ class WorksiteRequest extends FormRequest
             ],
             'priority' => [
                 'required',
-                Rule::enum(Priority::class)
+                Rule::enum(WorksitePriority::class)
             ],
             'status' => [
                 'required',
-                Rule::enum(Status::class)
+                Rule::enum(WorksiteStatus::class)
             ],
             'street' => [
                 'nullable',
@@ -87,7 +87,7 @@ class WorksiteRequest extends FormRequest
             'start_date' => 'Date prévu de début',
             'end_date' => 'Date prévu de fin ',
             'priority' => 'Priorité',
-            'status' => 'Status',
+            'status' => 'WorksiteStatus',
             'street' => 'Rue',
             'city' => 'Ville',
             'zip_code' => 'Code postal',

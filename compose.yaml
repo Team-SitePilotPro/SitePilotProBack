@@ -1,11 +1,4 @@
 services:
-    pgadmin:
-        image: dpage/pgadmin4
-        environment:
-            PGADMIN_DEFAULT_EMAIL: "admin@example.com"
-            PGADMIN_DEFAULT_PASSWORD: "admin"
-        ports:
-            - "5050:80"
     laravel.test:
         build:
             context: './vendor/laravel/sail/runtimes/8.5'

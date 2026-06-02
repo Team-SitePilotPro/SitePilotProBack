@@ -1,0 +1,49 @@
+#  _____ _____    _____________
+# /  __ \_   _|  / /  __ \  _  \
+# | /  \/ | |   / /| /  \/ | | |
+# | |     | |  / / | |   | | | |
+# | \__/\_| |_/ /  | \__/\ |/ /
+# \____/\___/_/    \____/___/
+
+/.github/** @Rmsaone
+/bin/** @Rmsaone
+.env.ci @Rmsaone
+
+# ______ _   _ ______
+# | ___ \ | | || ___ \
+# | |_/ / |_| || |_/ /
+# |  __/|  _  ||  __/
+# | |   | | | || |
+# \_|   \_| |_/\_|
+
+pint.json @Rmsaone
+composer.json @Rmsaone
+composer.lock @Rmsaone
+/database/Env/Production/** @Rmsaone
+/database/Env/ProductionSeeder.php @Rmsaone
+/src/Domain/Develop/** @Rmsaone
+/fixtures/seeders/env/production/** @Rmsaone
+
+#    ___ _____       __  _____ _____
+#   |_  /  ___|     / / |_   _/  ___|
+#     | \ `--.     / /    | | \ `--.
+#     | |`--. \   / /     | |  `--. \
+# /\__/ /\__/ /  / /      | | /\__/ /
+# \____/\____/  /_/       \_/ \____/
+
+
+
+# _____ _       _           _
+#|  __ \ |     | |         | |
+#| |  \/ | ___ | |__   __ _| |
+#| | __| |/ _ \| '_ \ / _` | |
+#| |_\ \ | (_) | |_) | (_| | |
+# \____/_|\___/|_.__/ \__,_|_|
+
+README.md @Rmsaone
+/.github/PULL_REQUEST_TEMPLATE/** @Rmsaone
+/.github/PULL_REQUEST_TEMPLATE.md @Rmsaone
+/app/**        @Rmsaone
+/database/**   @Rmsaone
+/routes/**     @Rmsaone
+/tests/**      @Rmsaone
