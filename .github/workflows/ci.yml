@@ -113,13 +113,6 @@ jobs:
       - name: Configure .env.testing
         run: |
           echo "APP_ENV=testing" >> .env.testing
-          echo "APP_KEY=" >> .env.testing
-          echo "DB_CONNECTION=mysql" >> .env.testing
-          echo "DB_HOST=127.0.0.1" >> .env.testing
-          echo "DB_PORT=3306" >> .env.testing
-          echo "DB_DATABASE=laravel_test" >> .env.testing
-          echo "DB_USERNAME=root" >> .env.testing
-          echo "DB_PASSWORD=root" >> .env.testing
 
       - name: Generate application key
         run: php artisan key:generate --env=testing

@@ -8,7 +8,7 @@
 - [ ] 🔴 Backend (Laravel/PHP)
 - [ ] 🟢 Frontend (Nuxt/Vue)
 - [ ] 🗄️ Database (Migration/Seeder)
-- [ ] 🔌 API
+- [ ] 🔌 API /Github
 
 ## 🎯 Type de changement
 - [ ] ✨ Nouvelle fonctionnalité
