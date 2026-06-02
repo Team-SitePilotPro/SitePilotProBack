@@ -19,7 +19,7 @@ export default {
                 'revert',
             ],
         ],
-        'type-case': [2, 'always', 'lower-case'],
+        'type-case': [1, 'always', 'lower-case'],
         'type-empty': [2, 'never'],
 
         // ─── Scope ──────────────────────────────
