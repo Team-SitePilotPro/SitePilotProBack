@@ -23,7 +23,7 @@ class ClientService
     {
         return Client::query()->create([
             'contact_name' => $clientDto->contactName,
-            'name' => $clientDto->name,
+            'private_name' => $clientDto->privateName,
             'email' => $clientDto->email,
             'company' => $clientDto->company,
             'phone' => $clientDto->phone,
@@ -31,7 +31,7 @@ class ClientService
             'city' => $clientDto->city,
             'zip_code' => $clientDto->zipCode,
             'country' => $clientDto->country,
-            'type' => $clientDto->type,
+            'client_type' => $clientDto->clientType,
             'siret' => $clientDto->siret,
             'tva_intra' => $clientDto->tvaIntra,
         ]);
@@ -42,7 +42,7 @@ class ClientService
     {
         $client->update([
             'contact_name' => $clientDto->contactName,
-            'name' => $clientDto->name,
+            'private_name' => $clientDto->privateName,
             'email' => $clientDto->email,
             'company' => $clientDto->company,
             'phone' => $clientDto->phone,
@@ -50,7 +50,7 @@ class ClientService
             'city' => $clientDto->city,
             'zip_code' => $clientDto->zipCode,
             'country' => $clientDto->country,
-            'type' => $clientDto->type,
+            'client_type' => $clientDto->clientType,
             'siret' => $clientDto->siret,
             'tva_intra' => $clientDto->tvaIntra,
         ]);
