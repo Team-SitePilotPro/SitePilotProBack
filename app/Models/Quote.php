@@ -45,6 +45,7 @@ class Quote extends Model
      */
     protected $guarded = ['id'];
 
+    #[\Override]
     protected function casts(): array
     {
         return [
@@ -66,7 +67,7 @@ class Quote extends Model
 
     public function productLines(): HasMany
     {
-        return $this->hasMany(ProductLine::class)->orderBy('sort_order');
+        return $this->hasMany(ProductLine::class);
     }
 
     public function worksites(): BelongsToMany

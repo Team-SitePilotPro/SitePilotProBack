@@ -45,6 +45,7 @@ class InvoiceClient extends Model
      */
     protected $guarded = ['id'];
 
+    #[\Override]
     protected function casts(): array
     {
         return [

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
 
 use Cknow\Money\Casts\MoneyIntegerCast;
@@ -39,6 +41,7 @@ class Workforce extends Model
      */
     protected $guarded = ['id'];
 
+    #[\Override]
     protected function casts(): array
     {
         return [

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Database\Seeders;
 
 use App\Models\Client;
@@ -32,7 +34,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         // Assigner des utilisateurs aux chantiers (pivot)
-        $worksites->each(function (Worksite $worksite) use ($admin) {
+        $worksites->each(function (Worksite $worksite) use ($admin): void {
             $worksite->users()->attach(
                 $admin->id
             );
@@ -44,21 +46,21 @@ class DatabaseSeeder extends Seeder
         ]);
 
         // Lignes produits par devis
-        $quotes->each(function (Quote $quote) {
-            ProductLine::factory(rand(2, 8))->create([
+        $quotes->each(function (Quote $quote): void {
+            ProductLine::factory(random_int(2, 8))->create([
                 'quote_id' => $quote->id,
             ]);
         });
 
         // Associer devis aux chantiers (pivot)
-        $worksites->each(function (Worksite $worksite) use ($quotes) {
+        $worksites->each(function (Worksite $worksite) use ($quotes): void {
             $worksite->quotes()->attach(
-                $quotes->random(rand(1, 3))->pluck('id')
+                $quotes->random(random_int(1, 3))->pluck('id')
             );
         });
 
         // ── Factures client ───────────────────────────
-        $worksites->each(function (Worksite $worksite) {
+        $worksites->each(function (Worksite $worksite): void {
             InvoiceClient::factory()->create([
                 'worksite_id' => $worksite->id,
                 'client_id' => $worksite->client_id,
@@ -66,29 +68,29 @@ class DatabaseSeeder extends Seeder
         });
 
         // ── Factures fournisseur ──────────────────────
-        $worksites->each(function (Worksite $worksite) {
-            InvoiceSupplier::factory(rand(1, 3))->create([
+        $worksites->each(function (Worksite $worksite): void {
+            InvoiceSupplier::factory(random_int(1, 3))->create([
                 'worksite_id' => $worksite->id,
             ]);
         });
 
         // ── Factures sous-traitant ────────────────────
-        $worksites->each(function (Worksite $worksite) {
-            InvoiceSubcontractor::factory(rand(1, 3))->create([
+        $worksites->each(function (Worksite $worksite): void {
+            InvoiceSubcontractor::factory(random_int(1, 3))->create([
                 'worksite_id' => $worksite->id,
             ]);
         });
 
         // ── Factures autres ───────────────────────────
-        $worksites->each(function (Worksite $worksite) {
-            InvoiceOther::factory(rand(1, 2))->create([
+        $worksites->each(function (Worksite $worksite): void {
+            InvoiceOther::factory(random_int(1, 2))->create([
                 'worksite_id' => $worksite->id,
             ]);
         });
 
         // ── Main d'oeuvre ──────────────────────────────
-        $worksites->each(function (Worksite $worksite) {
-            Workforce::factory(rand(2, 6))->create([
+        $worksites->each(function (Worksite $worksite): void {
+            Workforce::factory(random_int(2, 6))->create([
                 'worksite_id' => $worksite->id,
             ]);
         });

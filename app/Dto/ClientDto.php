@@ -4,27 +4,27 @@ declare(strict_types=1);
 
 namespace App\Dto;
 
-use App\Enums\Type;
+use App\Enums\ClientType;
 
-class ClientDto
+final readonly class ClientDto
 {
     public function __construct(
-        public readonly string $contactName,
-        public readonly ?string $name,
-        public readonly string $email,
-        public readonly ?string $company,
-        public readonly string $phone,
-        public readonly string $street,
-        public readonly string $city,
-        public readonly int $zipCode,
-        public readonly string $country,
-        public readonly Type $type,
-        public readonly string $siret,
-        public readonly string $tvaIntra,
-    ) {}
+        public string     $contactName,
+        public ?string    $privateName,
+        public string     $email,
+        public ?string    $company,
+        public string     $phone,
+        public string     $street,
+        public string     $city,
+        public int        $zipCode,
+        public string     $country,
+        public ClientType $clientType,
+        public string     $siret,
+        public string     $tvaIntra,
+    ) {
+    }
 
     /**
-     * Création du DTO à partir d'un tableau.
      *
      * @param  array<string,mixed>  $data
      */
@@ -32,7 +32,7 @@ class ClientDto
     {
         return new self(
             contactName: $data['contact_name'],
-            name: $data['name'] ?? null,
+            privateName: $data['private_name'] ?? null,
             email: $data['email'],
             company: $data['company'] ?? null,
             phone: $data['phone'],
@@ -40,9 +40,9 @@ class ClientDto
             city: $data['city'],
             zipCode: (int) $data['zip_code'],
             country: $data['country'],
-            type: $data['type'] instanceof Type
-                ? $data['type']
-                : Type::from($data['type']),
+            clientType: $data['clientType'] instanceof ClientType
+                ? $data['clientType']
+                : ClientType::from($data['clientType']),
             siret: $data['siret'],
             tvaIntra: $data['tva_intra'],
         );

@@ -46,6 +46,7 @@ class User extends Authenticatable
      *
      * @return array<string, string>
      */
+    #[\Override]
     protected function casts(): array
     {
         return [
@@ -67,7 +68,7 @@ class User extends Authenticatable
 
     public function isAdmin(): bool
     {
-        return $this->role === UserRole::Admin;
+        return $this->userRole === UserRole::Admin;
     }
 
     public function getFullNameAttribute(): string

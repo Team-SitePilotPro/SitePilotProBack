@@ -13,18 +13,20 @@ final readonly class WorksiteDto
 {
     public function __construct(
         public int $client_id,
-        public string $name,
+        public ?string $code,
+        public string $nameWorksite,
         public ?string $description,
-        public ?Carbon $start_date,
-        public ?Carbon $end_date,
-        public WorksitePriority $priority,
-        public WorksiteStatus $status,
+        public ?Carbon $startDate,
+        public ?Carbon $endDate,
+        public WorksitePriority $worksitePriority,
+        public WorksiteStatus $worksiteStatus,
         public string $street,
         public string $city,
         public int $zip_code,
         public string $country,
 
-    ) {}
+    ) {
+    }
 
     /**
      * @param  array<string,scalar|null>|ArrayAccess  $data
@@ -33,16 +35,17 @@ final readonly class WorksiteDto
     {
         return new self(
             client_id: (int) $data['client_id'],
-            name: (string) $data['name'],
+            code: $data['code'] ?? null,
+            nameWorksite: (string) $data['name_worksite'],
             description: $data['description'] ?? null,
-            start_date: isset($data['start_date'])
+            startDate: isset($data['start_date'])
                 ? Carbon::parse($data['start_date'])
                 : null,
-            end_date: isset($data['end_date'])
+            endDate: isset($data['end_date'])
                 ? Carbon::parse($data['end_date'])
                 : null,
-            priority: WorksitePriority::from($data['priority']),
-            status: WorksiteStatus::from($data['status']),
+            worksitePriority: WorksitePriority::from($data['worksite_priority']),
+            worksiteStatus: WorksiteStatus::from($data['worksite_status']),
             street: (string) $data['street'],
             city: (string) $data['city'],
             zip_code: (int) $data['zip_code'],

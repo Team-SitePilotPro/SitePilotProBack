@@ -13,7 +13,7 @@ use Illuminate\Validation\Rule;
 class WorksiteRequest extends FormRequest
 {
     /**
-     * @return array<string, ValidationRule|array|string>
+     * @return array<string, array|string|ValidationRule>
      */
     public function rules(): array
     {
@@ -23,7 +23,7 @@ class WorksiteRequest extends FormRequest
                 'integer',
                 'exists:clients,id',
             ],
-            'name' => [
+            'name_worksite' => [
                 'nullable',
                 'string',
                 'min:2',
@@ -43,11 +43,11 @@ class WorksiteRequest extends FormRequest
                 'nullable',
                 'date',
             ],
-            'priority' => [
+            'worksite_priority' => [
                 'required',
                 Rule::enum(WorksitePriority::class),
             ],
-            'status' => [
+            'worksite_status' => [
                 'required',
                 Rule::enum(WorksiteStatus::class),
             ],
@@ -76,6 +76,7 @@ class WorksiteRequest extends FormRequest
     /**
      * @return array<string,string>
      */
+    #[\Override]
     public function attributes(): array
     {
         return [

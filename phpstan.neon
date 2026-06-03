@@ -1,0 +1,33 @@
+parameters:
+    level: 5
+
+    #---- PHPStan trusts PHPDoc annotations
+    treatPhpDocTypesAsCertain: false
+
+    tmpDir: storage/tmp/phpstan
+
+    paths:
+        #---- Legacy Controllers
+        - app/Http/Controllers/Api
+        #---- Legacy Request
+        - app/Http/Requests
+        #---- Legacy Resources
+        - app/Http/Resources
+        #---- Legacy Services Actions
+        - app/Actions
+        - app/Services
+        #---- Legacy Enums / DTOs
+        - app/Enums
+        - app/Dto
+        #---- Legacy Models
+        - app/Models
+        #---- Other EP
+
+        #---- Database
+        - database/factories
+        - database/migrations
+        - database/seeders
+        #---- Routes
+        - routes
+        #---- Tests
+        - tests

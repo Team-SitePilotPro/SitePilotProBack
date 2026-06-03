@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Database\Factories;
 
 use App\Enums\ClientType;
@@ -26,8 +28,8 @@ class ClientFactory extends Factory
             'phone' => $this->faker->numerify('06########'),
             'company' => $this->faker->company(),
             'clientType' => ClientType::Pro,
-            'siret' => $this->faker->unique()->siret(),
-            'tva_intra' => $this->faker->unique()->vat(),
+            'siret' => $this->faker->numerify('##############'),
+            'tva_intra' => $this->faker->unique()->bothify('FR-##-#########'),
             'street' => $this->faker->streetAddress(),
             'city' => $this->faker->city(),
             'zip_code' => $this->faker->postcode(),

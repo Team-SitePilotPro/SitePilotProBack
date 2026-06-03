@@ -18,6 +18,7 @@ use Illuminate\Support\Carbon;
  * - Attributes.
  *
  * @property int $id
+ * @property int $client_id
  * @property string|null $code
  * @property string $name_worksite
  * @property string|null $description
@@ -45,20 +46,14 @@ class Worksite extends Model
      */
     protected $guarded = ['id'];
 
+    #[\Override]
     protected function casts(): array
     {
         return [
-            'code' => 'string',
-            'name_worksite' => 'string',
-            'description' => 'string',
             'start_date' => 'datetime',
             'end_date' => 'datetime',
             'worksite_priority' => WorksitePriority::class,
             'worksite_status' => WorksiteStatus::class,
-            'street' => 'string',
-            'city' => 'string',
-            'zip_code' => 'integer',
-            'country' => 'string',
         ];
     }
 

@@ -17,7 +17,6 @@ use Illuminate\Support\Collection;
 /**
  * - Attributes.
  *
- *
  * @property int $id
  * @property string $contact_name
  * @property string|null $private_name
@@ -50,6 +49,7 @@ class Client extends Model
      */
     protected $guarded = ['id'];
 
+    #[\Override]
     protected function casts(): array
     {
         return [
