@@ -94,7 +94,7 @@ jobs:
         run: composer install --no-interaction --prefer-dist --optimize-autoloader
 
       - name: Run Rector (dry-run)
-        run: vendor/bin/rector --dry-run --no-progress
+        run: vendor/bin/rector --dry-run
 
   # Test Phpstan
   phpstan:
