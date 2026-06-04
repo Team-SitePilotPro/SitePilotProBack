@@ -9,6 +9,7 @@ use App\Enums\WorksiteStatus;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
+use Override;
 
 class WorksiteRequest extends FormRequest
 {
@@ -76,7 +77,7 @@ class WorksiteRequest extends FormRequest
     /**
      * @return array<string,string>
      */
-    #[\Override]
+    #[Override]
     public function attributes(): array
     {
         return [

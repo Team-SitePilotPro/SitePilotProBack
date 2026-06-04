@@ -22,19 +22,19 @@ use Rector\TypeDeclaration\Rector\Property\TypedPropertyFromStrictConstructorRec
 
 return RectorConfig::configure()
     ->withPaths([
-        __DIR__.  '/app/Http/Controllers/Api',
-        __DIR__ . '/app/Http/Requests',
-        __DIR__ . '/app/Http/Resources',
-        __DIR__ . '/app/Actions',
-        __DIR__ . '/app/Services',
-        __DIR__ . '/app/Dto',
-        __DIR__ . '/app/Models',
-        __DIR__ . '/app/Enums',
+        __DIR__.'/app/Http/Controllers/Api',
+        __DIR__.'/app/Http/Requests',
+        __DIR__.'/app/Http/Resources',
+        __DIR__.'/app/Actions',
+        __DIR__.'/app/Services',
+        __DIR__.'/app/Dto',
+        __DIR__.'/app/Models',
+        __DIR__.'/app/Enums',
         __DIR__.'/database/factories',
         __DIR__.'/database/migrations',
         __DIR__.'/database/seeders',
-        __DIR__ . '/routes',
-        __DIR__ . '/tests',
+        __DIR__.'/routes',
+        __DIR__.'/tests',
     ])
     // uncomment to reach your current PHP version
     ->withPhpSets(php84: true)
@@ -60,24 +60,24 @@ return RectorConfig::configure()
         StrictArrayParamDimFetchRector::class,
         StrictStringParamConcatRector::class,
 
-        //DEAD CODE
+        // DEAD CODE
         RemoveUnusedPrivatePropertyRector::class,
         RemoveUnusedPrivateMethodRector::class,
         RemoveUnusedPromotedPropertyRector::class,
-      ])
+    ])
     ->withSkip([
         // Eloquent Models: Magic Properties $attributes
         TypedPropertyFromAssignsRector::class => [
-            __DIR__ . '/app/Models',
-            __DIR__ . '/database/factories',
+            __DIR__.'/app/Models',
+            __DIR__.'/database/factories',
         ],
 
         // Migrations: one-shot scripts, no need for readonly
         // SetUp() tests: readonly incompatible with certain mocks
         ReadOnlyPropertyRector::class => [
-            __DIR__ . '/database/migrations',
-            __DIR__ . '/database/seeders',
-            __DIR__ . '/tests',
+            __DIR__.'/database/migrations',
+            __DIR__.'/database/seeders',
+            __DIR__.'/tests',
         ],
     ])
     ->withImportNames(
@@ -88,5 +88,3 @@ return RectorConfig::configure()
     )
     ->withTypeCoverageLevel(3)
     ->withDeadCodeLevel(3);
-
-

@@ -8,6 +8,7 @@ use App\Http\Resources\Client\ClientResource;
 use App\Models\Worksite;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Override;
 
 /**
  * @property Worksite $resource
@@ -15,10 +16,9 @@ use Illuminate\Http\Resources\Json\JsonResource;
 final class WorksiteResource extends JsonResource
 {
     /**
-     *
      * @return array<string, mixed>
      */
-    #[\Override]
+    #[Override]
     public function toArray(Request $request): array
     {
         return [

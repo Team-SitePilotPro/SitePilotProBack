@@ -9,23 +9,22 @@ use App\Enums\ClientType;
 final readonly class ClientDto
 {
     public function __construct(
-        public string     $contactName,
-        public ?string    $privateName,
-        public string     $email,
-        public ?string    $company,
-        public string     $phone,
-        public string     $street,
-        public string     $city,
-        public int        $zipCode,
-        public string     $country,
+        public string $contactName,
+        public ?string $privateName,
+        public string $email,
+        public ?string $company,
+        public string $phone,
+        public string $street,
+        public string $city,
+        public int $zipCode,
+        public string $country,
         public ClientType $clientType,
-        public string     $siret,
-        public string     $tvaIntra,
+        public string $siret,
+        public string $tvaIntra,
     ) {
     }
 
     /**
-     *
      * @param  array<string,mixed>  $data
      */
     public static function fromArray(array $data): self

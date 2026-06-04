@@ -8,6 +8,7 @@ use App\Http\Resources\Worksite\WorksiteResource;
 use App\Models\Client;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Override;
 
 /**
  * @property Client $resource
@@ -15,10 +16,9 @@ use Illuminate\Http\Resources\Json\JsonResource;
 final class ClientResource extends JsonResource
 {
     /**
-     *
      * @return array<string,mixed>
      */
-    #[\Override]
+    #[Override]
     public function toArray(Request $request): array
     {
         return [
@@ -37,7 +37,7 @@ final class ClientResource extends JsonResource
             'tva_intra' => $this->resource->tva_intra,
             'worksites' => $this->whenLoaded(
                 'worksites',
-            fn () => WorksiteResource::collection($this->resource->worksites)),
+                fn () => WorksiteResource::collection($this->resource->worksites)),
         ];
     }
 }

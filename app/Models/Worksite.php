@@ -13,6 +13,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Carbon;
+use Override;
 
 /**
  * - Attributes.
@@ -46,7 +47,7 @@ class Worksite extends Model
      */
     protected $guarded = ['id'];
 
-    #[\Override]
+    #[Override]
     protected function casts(): array
     {
         return [

@@ -13,6 +13,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
+use Override;
 
 /**
  * - Attributes.
@@ -49,7 +50,7 @@ class Client extends Model
      */
     protected $guarded = ['id'];
 
-    #[\Override]
+    #[Override]
     protected function casts(): array
     {
         return [
