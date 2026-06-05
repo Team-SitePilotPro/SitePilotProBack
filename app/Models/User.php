@@ -8,12 +8,12 @@ namespace App\Models;
 use App\Enums\UserRole;
 use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Override;
 
 /**
  * - Attributes.
@@ -37,7 +37,7 @@ class User extends Authenticatable
 
     protected $fillable = [
         'first_name', 'last_name', 'email',
-        'password', 'phone', 'userRole'
+        'password', 'phone', 'userRole',
     ];
 
     protected $hidden = ['password', 'remember_token'];
@@ -47,6 +47,7 @@ class User extends Authenticatable
      *
      * @return array<string, string>
      */
+    #[Override]
     protected function casts(): array
     {
         return [
@@ -68,7 +69,7 @@ class User extends Authenticatable
 
     public function isAdmin(): bool
     {
-        return $this->role === UserRole::Admin;
+        return $this->userRole === UserRole::Admin;
     }
 
     public function getFullNameAttribute(): string

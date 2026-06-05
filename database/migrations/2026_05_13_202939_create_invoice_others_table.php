@@ -1,15 +1,17 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Models\Worksite;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
+return new class() extends Migration
 {
     public function up(): void
     {
-        Schema::create('invoice_others', function (Blueprint $table): void  {
+        Schema::create('invoice_others', function (Blueprint $table): void {
             $table->id();
             $table->foreignIdFor(Worksite::class)
                 ->constrained()
@@ -23,6 +25,7 @@ return new class extends Migration
             $table->softDeletes();
         });
     }
+
     public function down(): void
     {
         Schema::dropIfExists('invoice_others');

@@ -3,55 +3,41 @@
 declare(strict_types=1);
 
 namespace App\Http\Resources\Client;
-// Importation des classes nécessaires.
+
+use App\Http\Resources\Worksite\WorksiteResource;
+use App\Models\Client;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Override;
 
 /**
- * @mixin \App\Models\Client
+ * @property Client $resource
  */
-class ClientResource extends JsonResource
+final class ClientResource extends JsonResource
 {
     /**
-     * Transforme le client en tableau JSON.
-     
      * @return array<string,mixed>
      */
+    #[Override]
     public function toArray(Request $request): array
     {
         return [
-            'id' => $this->id,
-
-            'contact_name' => $this->contact_name,
-
-            'name' => $this->name,
-
-            'email' => $this->email,
-
-            'company' => $this->company,
-
-            'phone' => $this->phone,
-
-            'street' => $this->street,
-
-            'city' => $this->city,
-
-            'zip_code' => $this->zip_code,
-
-            'country' => $this->country,
-
-            'type' => $this->type,
-
-            'siret' => $this->siret,
-
-            'tva_intra' => $this->tva_intra,
-
-            'created_at' => $this->created_at,
-
-            'updated_at' => $this->updated_at,
-
-            // Relation des chantiers du client
-            'worksites' => $this->whenLoaded('worksites'),
+            'id' => $this->resource->id,
+            'contact_name' => $this->resource->contact_name,
+            'private_name' => $this->resource->private_name,
+            'email' => $this->resource->email,
+            'company' => $this->resource->company,
+            'phone' => $this->resource->phone,
+            'street' => $this->resource->street,
+            'city' => $this->resource->city,
+            'zip_code' => $this->resource->zip_code,
+            'country' => $this->resource->country,
+            'clientType' => $this->resource->clientType,
+            'siret' => $this->resource->siret,
+            'tva_intra' => $this->resource->tva_intra,
+            'worksites' => $this->whenLoaded(
+                'worksites',
+                fn () => WorksiteResource::collection($this->resource->worksites)),
         ];
     }
 }

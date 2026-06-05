@@ -13,6 +13,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
+use Override;
 
 /**
  * - Attributes.
@@ -39,12 +40,13 @@ class InvoiceOther extends Model
      */
     protected $guarded = ['id'];
 
+    #[Override]
     protected function casts(): array
     {
         return [
-            'delivery_date'  => 'datetime',
+            'delivery_date' => 'datetime',
             'purchase_price' => MoneyIntegerCast::class,
-            'cost_price'     => MoneyIntegerCast::class,
+            'cost_price' => MoneyIntegerCast::class,
         ];
     }
 

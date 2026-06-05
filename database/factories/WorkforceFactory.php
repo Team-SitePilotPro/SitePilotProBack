@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Database\Factories;
 
 use App\Models\Workforce;
@@ -19,21 +21,21 @@ class WorkforceFactory extends Factory
      */
     public function definition(): array
     {
-        $hrWorking       = $this->faker->numberBetween(8, 500);
-        $hrRate          = Money::EUR($this->faker->numberBetween(2000, 50000));
-        $costHrWorking   = $hrRate->multiply($hrWorking);
+        $hrWorking = $this->faker->numberBetween(8, 500);
+        $hrRate = Money::EUR($this->faker->numberBetween(2000, 50000));
+        $costHrWorking = $hrRate->multiply($hrWorking);
         $additionalCosts = Money::EUR($this->faker->numberBetween(0, 200000));
         $total_gross_cost = $costHrWorking->add($additionalCosts);
 
         return [
-            'code'             => $this->faker->numerify('MO-####'),
-            'worker'           => $this->faker->company(),
-            'hr_working'       => $hrWorking,
-            'hr_rate'          => $hrRate,
-            'cost_hr_working'  => $costHrWorking,
+            'code' => $this->faker->numerify('MO-####'),
+            'worker' => $this->faker->company(),
+            'hr_working' => $hrWorking,
+            'hr_rate' => $hrRate,
+            'cost_hr_working' => $costHrWorking,
             'additional_costs' => $additionalCosts,
             'total_gross_cost' => $total_gross_cost,
-            'worksite_id'      => Worksite::factory(),
+            'worksite_id' => Worksite::factory(),
         ];
     }
 }

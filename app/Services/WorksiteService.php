@@ -22,9 +22,9 @@ class WorksiteService
 
     public function store(WorksiteDto $worksiteDto): Worksite
     {
-        /** @var Worksite $createWorksite*/
+        /** @var Worksite $createWorksite */
         $createWorksite = app()->call(CreateWorksiteAction::class, [
-            'worksiteDto' => $worksiteDto
+            'worksiteDto' => $worksiteDto,
         ]);
 
         $createWorksite->refresh();
@@ -35,12 +35,11 @@ class WorksiteService
     public function update(
         Worksite $worksite,
         WorksiteDto $worksiteDto
-    ): Worksite
-    {
-        /** @var Worksite $updateWorksite*/
+    ): Worksite {
+        /** @var Worksite $updateWorksite */
         $updateWorksite = app()->call(UpdateWorksiteAction::class, [
             'worksite' => $worksite,
-            'worksiteDto' => $worksiteDto
+            'worksiteDto' => $worksiteDto,
         ]);
 
         $updateWorksite->refresh();
@@ -48,9 +47,8 @@ class WorksiteService
         return $updateWorksite;
     }
 
-    public function destroy(Worksite $worksite) : void
+    public function destroy(Worksite $worksite): void
     {
         $worksite->delete();
     }
 }
-

@@ -13,10 +13,10 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
+use Override;
 
 /**
  * - Attributes.
- *
  *
  * @property int $id
  * @property string $contact_name
@@ -40,7 +40,6 @@ use Illuminate\Support\Collection;
  * @property Collection<int,InvoiceClient>|null $invoicesClient
  * @property User $user
  */
-
 class Client extends Model
 {
     /** @use HasFactory<ClientFactory> */
@@ -51,6 +50,7 @@ class Client extends Model
      */
     protected $guarded = ['id'];
 
+    #[Override]
     protected function casts(): array
     {
         return [

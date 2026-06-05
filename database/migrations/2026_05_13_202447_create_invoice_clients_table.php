@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Enums\PaymentMethod;
 use App\Enums\PaymentStatus;
 use App\Models\Client;
@@ -9,7 +11,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
+return new class() extends Migration
 {
     /**
      * Run the migrations.
@@ -33,7 +35,7 @@ return new class extends Migration
             $table->string('invoice_description');
             $table->integer('total_ht');
             $table->enum('payment_status', array_column(PaymentStatus::cases(), 'value')
-                )->default(PaymentStatus::Pending->value);
+            )->default(PaymentStatus::Pending->value);
             $table->dateTime('payment_date')->nullable();
             $table->enum('payment_method', array_column(PaymentMethod::cases(), 'value')
             )->default(PaymentMethod::Other->value);

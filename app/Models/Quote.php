@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Carbon;
+use Override;
 
 /**
  * - Attributes.
@@ -35,7 +36,6 @@ use Illuminate\Support\Carbon;
  * - Relations.
  * @property Client $client
  */
-
 class Quote extends Model
 {
     /** @use HasFactory<QuoteFactory> */
@@ -46,17 +46,18 @@ class Quote extends Model
      */
     protected $guarded = ['id'];
 
+    #[Override]
     protected function casts(): array
     {
         return [
-            'quote_number'  => 'string',
-            'issue_date'    => 'datetime',
+            'quote_number' => 'string',
+            'issue_date' => 'datetime',
             'validity_date' => 'datetime',
-            'quote_status'  => QuoteStatus::class,
-            'tva_rate'      => TvaRate::class,
-            'subtotal_ht'   => MoneyIntegerCast::class,
-            'total_ttc'     => MoneyIntegerCast::class,
-            'tva_amount'    => MoneyIntegerCast::class,
+            'quote_status' => QuoteStatus::class,
+            'tva_rate' => TvaRate::class,
+            'subtotal_ht' => MoneyIntegerCast::class,
+            'total_ttc' => MoneyIntegerCast::class,
+            'tva_amount' => MoneyIntegerCast::class,
         ];
     }
 
@@ -67,7 +68,7 @@ class Quote extends Model
 
     public function productLines(): HasMany
     {
-        return $this->hasMany(ProductLine::class)->orderBy('sort_order');
+        return $this->hasMany(ProductLine::class);
     }
 
     public function worksites(): BelongsToMany

@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
+use Override;
 
 /**
  * - Attributes.
@@ -45,12 +46,13 @@ class InvoiceClient extends Model
      */
     protected $guarded = ['id'];
 
+    #[Override]
     protected function casts(): array
     {
         return [
-            'delivery_date'  => 'datetime',
-            'total_ht'       => MoneyIntegerCast::class,
-            'payment_date'   => 'datetime',
+            'delivery_date' => 'datetime',
+            'total_ht' => MoneyIntegerCast::class,
+            'payment_date' => 'datetime',
             'payment_status' => PaymentStatus::class,
             'payment_method' => PaymentMethod::class,
         ];
