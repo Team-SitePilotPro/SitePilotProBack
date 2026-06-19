@@ -23,6 +23,7 @@ export default {
         'type-empty': [2, 'never'],
 
         // ─── Scope ──────────────────────────────
+        'scope-empty': [2, 'never'],
         'scope-case': [2, 'always', 'lower-case'],
         'scope-enum': [0],
 
