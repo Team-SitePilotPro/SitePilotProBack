@@ -6,50 +6,45 @@ namespace App\Dto;
 
 use App\Enums\WorksitePriority;
 use App\Enums\WorksiteStatus;
-use ArrayAccess;
 use Illuminate\Support\Carbon;
 
+// Data Transfer Object for worksite create and update operations.
 final readonly class WorksiteDto
 {
     public function __construct(
-        public int $client_id,
-        public ?string $code,
-        public string $nameWorksite,
-        public ?string $description,
-        public ?Carbon $startDate,
-        public ?Carbon $endDate,
+        public int              $clientId,
+        public string           $nameWorksite,
+        public ?string          $description,
+        public ?Carbon          $startDate,
+        public ?Carbon          $endDate,
         public WorksitePriority $worksitePriority,
-        public WorksiteStatus $worksiteStatus,
-        public string $street,
-        public string $city,
-        public int $zip_code,
-        public string $country,
+        public WorksiteStatus   $worksiteStatus,
+        public ?string          $street,
+        public ?string          $city,
+        public ?int             $zipCode,
+        public ?string          $country,
+    ) {}
 
-    ) {
-    }
-
-    /**
-     * @param  array<string,scalar|null>|ArrayAccess  $data
-     */
-    public static function fromArray(array|ArrayAccess $data): self
+    // Build a WorksiteDto from a validated request array.
+    /** @param array<string,mixed> $data */
+    public static function fromArray(array $data): self
     {
         return new self(
-            client_id: (int) $data['client_id'],
-            code: $data['code'] ?? null,
-            nameWorksite: (string) $data['name_worksite'],
-            description: $data['description'] ?? null,
-            startDate: isset($data['start_date'])
-                ? Carbon::parse($data['start_date'])
-                : null,
-            endDate: isset($data['end_date'])
-                ? Carbon::parse($data['end_date'])
-                : null,
-            worksitePriority: WorksitePriority::from($data['worksite_priority']),
-            worksiteStatus: WorksiteStatus::from($data['worksite_status']),
-            street: (string) $data['street'],
-            city: (string) $data['city'],
-            zip_code: (int) $data['zip_code'],
-            country: (string) $data['country'],
+            clientId:         (int) $data['client_id'],
+            nameWorksite:     (string) $data['name_worksite'],
+            description:      $data['description'] ?? null,
+            startDate:        isset($data['start_date']) ? Carbon::parse($data['start_date']) : null,
+            endDate:          isset($data['end_date']) ? Carbon::parse($data['end_date']) : null,
+            worksitePriority: $data['worksite_priority'] instanceof WorksitePriority
+                ? $data['worksite_priority']
+                : WorksitePriority::from($data['worksite_priority']),
+            worksiteStatus:   $data['worksite_status'] instanceof WorksiteStatus
+                ? $data['worksite_status']
+                : WorksiteStatus::from($data['worksite_status']),
+            street:           $data['street'] ?? null,
+            city:             $data['city'] ?? null,
+            zipCode:          isset($data['zip_code']) ? (int) $data['zip_code'] : null,
+            country:          $data['country'] ?? null,
         );
     }
 }

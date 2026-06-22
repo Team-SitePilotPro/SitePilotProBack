@@ -12,8 +12,11 @@ final class UpdateUserAction
     public function __invoke(User $user, UserDto $userDto): User
     {
         $data = [
-            'name'  => $userDto->name,
-            'email' => $userDto->email,
+            'first_name' => $userDto->firstName,
+            'last_name'  => $userDto->lastName,
+            'email'      => $userDto->email,
+            'phone'      => $userDto->phone,
+            'userRole'   => $userDto->userRole,
         ];
 
         if ($userDto->password !== null) {

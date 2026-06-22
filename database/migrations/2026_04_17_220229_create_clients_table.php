@@ -10,24 +10,17 @@ use Illuminate\Support\Facades\Schema;
 
 return new class() extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::create('clients', function (Blueprint $table): void {
             $table->id();
-            $table->foreignIdFor(User::class)
-                ->constrained()
-                ->cascadeOnDelete();
+            $table->foreignIdFor(User::class)->constrained()->cascadeOnDelete();
             $table->string('contact_name');
-            $table->string('private_name')->nullable();
+            $table->string('name')->nullable();
             $table->string('email')->unique();
             $table->string('company')->nullable();
             $table->string('phone');
-            $table->enum(
-                'clientType', array_column(ClientType::cases(), 'value')
-            );
+            $table->enum('type', array_column(ClientType::cases(), 'value'));
             $table->string('street');
             $table->string('city');
             $table->integer('zip_code');
@@ -39,9 +32,6 @@ return new class() extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('clients');

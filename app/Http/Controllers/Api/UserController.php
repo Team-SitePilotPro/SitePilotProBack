@@ -21,6 +21,7 @@ class UserController extends Controller
         private readonly UserService $userService,
     ) {}
 
+    // Return the list of all users.
     public function index(): JsonResponse
     {
         return UserResource::collection(
@@ -28,16 +29,18 @@ class UserController extends Controller
         )->response();
     }
 
+    // Return the details of a specific user.
     public function show(User $user): JsonResponse
     {
         return UserResource::make($user)->response();
     }
 
+    // Create a new user.
     public function store(StoreUserRequest $request): JsonResponse
     {
         /** @var User $user */
         $user = DB::transaction(
-            fn() => $this->userService->store(
+            fn () => $this->userService->store(
                 UserDto::fromArray($request->safe()->toArray())
             )
         );
@@ -47,19 +50,26 @@ class UserController extends Controller
             ->setStatusCode(Response::HTTP_CREATED);
     }
 
+    // Update an existing user — merge existing values so partial updates work.
     public function update(UpdateUserRequest $request, User $user): JsonResponse
     {
+        $data = array_merge([
+            'first_name' => $user->first_name,
+            'last_name'  => $user->last_name,
+            'email'      => $user->email,
+            'phone'      => $user->phone,
+            'userRole'   => $user->userRole,
+        ], $request->safe()->toArray());
+
         /** @var User $updatedUser */
         $updatedUser = DB::transaction(
-            fn() => $this->userService->update(
-                $user,
-                UserDto::fromArray($request->safe()->toArray())
-            )
+            fn () => $this->userService->update($user, UserDto::fromArray($data))
         );
 
         return UserResource::make($updatedUser)->response();
     }
 
+    // Soft-delete a user.
     public function destroy(User $user): JsonResponse
     {
         $user->delete();

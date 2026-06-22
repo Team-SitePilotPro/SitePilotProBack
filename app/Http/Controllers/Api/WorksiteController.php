@@ -18,9 +18,9 @@ class WorksiteController extends Controller
 {
     public function __construct(
         private readonly WorksiteService $worksiteService,
-    ) {
-    }
+    ) {}
 
+    // Return the list of all worksites with their related client.
     public function index(): JsonResponse
     {
         return WorksiteResource::collection(
@@ -28,6 +28,7 @@ class WorksiteController extends Controller
         )->response();
     }
 
+    // Return the details of a specific worksite.
     public function show(Worksite $worksite): JsonResponse
     {
         $worksite->loadMissing('client');
@@ -35,15 +36,14 @@ class WorksiteController extends Controller
         return WorksiteResource::make($worksite)->response();
     }
 
+    // Create a new worksite.
     public function store(WorksiteRequest $worksiteRequest): JsonResponse
     {
         $validated = $worksiteRequest->safe()->toArray();
 
         /** @var Worksite $createdWorksite */
         $createdWorksite = DB::transaction(
-            fn () => $this->worksiteService->store(
-                WorksiteDto::fromArray($validated)
-            )
+            fn () => $this->worksiteService->store(WorksiteDto::fromArray($validated))
         );
 
         $createdWorksite->loadMissing('client');
@@ -51,32 +51,30 @@ class WorksiteController extends Controller
         return WorksiteResource::make($createdWorksite)
             ->response()
             ->setStatusCode(Response::HTTP_CREATED);
-
     }
 
-    public function update(
-        Worksite $worksite,
-        WorksiteRequest $worksiteRequest
-    ): JsonResponse {
+    // Update an existing worksite.
+    public function update(Worksite $worksite, WorksiteRequest $worksiteRequest): JsonResponse
+    {
         $validated = $worksiteRequest->safe()->toArray();
 
-        /** @var Worksite $updateWorksite */
-        $updateWorksite = DB::transaction(
+        /** @var Worksite $updatedWorksite */
+        $updatedWorksite = DB::transaction(
             fn () => $this->worksiteService->update(
                 $worksite,
                 WorksiteDto::fromArray($validated)
             )
         );
-        $updateWorksite->loadMissing('client');
 
-        return WorksiteResource::make($updateWorksite)
-            ->response()
-            ->setStatusCode(Response::HTTP_CREATED);
+        $updatedWorksite->loadMissing('client');
+
+        return WorksiteResource::make($updatedWorksite)->response();
     }
 
+    // Soft-delete a worksite.
     public function destroy(Worksite $worksite): JsonResponse
     {
-        $worksite->delete();
+        $this->worksiteService->destroy($worksite);
 
         return response()->json(null, Response::HTTP_NO_CONTENT);
     }

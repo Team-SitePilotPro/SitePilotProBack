@@ -14,39 +14,34 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class ClientFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
     public function definition(): array
     {
         return [
+            'user_id'      => User::factory(),
             'contact_name' => $this->faker->name(),
-            'private_name' => null,
-            'email' => $this->faker->unique()->companyEmail(),
-            'phone' => $this->faker->numerify('06########'),
-            'company' => $this->faker->company(),
-            'clientType' => ClientType::Pro,
-            'siret' => $this->faker->numerify('##############'),
-            'tva_intra' => $this->faker->unique()->bothify('FR-##-#########'),
-            'street' => $this->faker->streetAddress(),
-            'city' => $this->faker->city(),
-            'zip_code' => $this->faker->postcode(),
-            'country' => 'France',
-            'user_id' => User::factory(),
+            'name'         => null,
+            'email'        => $this->faker->unique()->companyEmail(),
+            'phone'        => $this->faker->numerify('06########'),
+            'company'      => $this->faker->company(),
+            'type'         => ClientType::Pro,
+            'siret'        => $this->faker->unique()->numerify('##############'),
+            'tva_intra'    => $this->faker->unique()->numerify('FR###########'),
+            'street'       => $this->faker->streetAddress(),
+            'city'         => $this->faker->city(),
+            'zip_code'     => (int) $this->faker->postcode(),
+            'country'      => 'France',
         ];
     }
 
     public function professional(): static
     {
-        return $this->state(static fn () => ['type' => ClientType::Pro->value]);
+        return $this->state(fn () => ['type' => ClientType::Pro]);
     }
 
     public function individual(): static
     {
         return $this->state(fn () => [
-            'type' => ClientType::Private->value,
+            'type'    => ClientType::Private,
             'company' => null,
         ]);
     }

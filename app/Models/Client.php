@@ -16,15 +16,14 @@ use Illuminate\Support\Collection;
 use Override;
 
 /**
- * - Attributes.
- *
  * @property int $id
+ * @property int $user_id
  * @property string $contact_name
- * @property string|null $private_name
+ * @property string|null $name
  * @property string $email
  * @property string|null $company
  * @property string $phone
- * @property ClientType $clientType
+ * @property ClientType $type
  * @property string $street
  * @property string $city
  * @property int $zip_code
@@ -34,10 +33,7 @@ use Override;
  * @property Carbon $created_at
  * @property Carbon $updated_at
  *
- * - Relations.
  * @property Collection<int,Worksite>|null $worksites
- * @property Collection<int,Quote>|null $quotes
- * @property Collection<int,InvoiceClient>|null $invoicesClient
  * @property User $user
  */
 class Client extends Model
@@ -45,16 +41,13 @@ class Client extends Model
     /** @use HasFactory<ClientFactory> */
     use HasFactory, SoftDeletes;
 
-    /**
-     * @var array<int,string>
-     */
     protected $guarded = ['id'];
 
     #[Override]
     protected function casts(): array
     {
         return [
-            'clientType' => ClientType::class,
+            'type' => ClientType::class,
         ];
     }
 
@@ -66,15 +59,5 @@ class Client extends Model
     public function worksites(): HasMany
     {
         return $this->hasMany(Worksite::class);
-    }
-
-    public function quotes(): HasMany
-    {
-        return $this->hasMany(Quote::class);
-    }
-
-    public function invoicesClient(): HasMany
-    {
-        return $this->hasMany(InvoiceClient::class);
     }
 }

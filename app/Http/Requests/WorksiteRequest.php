@@ -9,89 +9,50 @@ use App\Enums\WorksiteStatus;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
-use Override;
 
 class WorksiteRequest extends FormRequest
 {
-    /**
-     * @return array<string, array|string|ValidationRule>
-     */
+    // Authorize all authenticated users to make this request.
+    public function authorize(): bool
+    {
+        return true;
+    }
+
+    // Validation rules for worksite creation and update.
+    /** @return array<string, ValidationRule|array|string> */
     public function rules(): array
     {
         return [
-            'client_id' => [
-                'required',
-                'integer',
-                'exists:clients,id',
-            ],
-            'name_worksite' => [
-                'nullable',
-                'string',
-                'min:2',
-                'max:55',
-            ],
-            'description' => [
-                'nullable',
-                'string',
-                'min:2',
-                'max:255',
-            ],
-            'start_date' => [
-                'nullable',
-                'date',
-            ],
-            'end_date' => [
-                'nullable',
-                'date',
-            ],
-            'worksite_priority' => [
-                'required',
-                Rule::enum(WorksitePriority::class),
-            ],
-            'worksite_status' => [
-                'required',
-                Rule::enum(WorksiteStatus::class),
-            ],
-            'street' => [
-                'nullable',
-                'string',
-                'max:55',
-            ],
-            'city' => [
-                'nullable',
-                'string',
-                'max:25',
-            ],
-            'zip_code' => [
-                'nullable',
-                'integer',
-            ],
-            'country' => [
-                'nullable',
-                'string',
-                'max:25',
-            ],
+            'client_id'          => ['required', 'integer', 'exists:clients,id'],
+            'name_worksite'      => ['required', 'string', 'min:2', 'max:255'],
+            'description'        => ['nullable', 'string', 'min:2', 'max:255'],
+            'start_date'         => ['nullable', 'date'],
+            'end_date'           => ['nullable', 'date', 'after_or_equal:start_date'],
+            'worksite_priority'  => ['required', Rule::enum(WorksitePriority::class)],
+            'worksite_status'    => ['required', Rule::enum(WorksiteStatus::class)],
+            'street'             => ['nullable', 'string', 'max:255'],
+            'city'               => ['nullable', 'string', 'max:100'],
+            'zip_code'           => ['nullable', 'integer'],
+            'country'            => ['nullable', 'string', 'max:100'],
         ];
     }
 
-    /**
-     * @return array<string,string>
-     */
-    #[Override]
+    // Human-readable attribute names used in validation messages.
+    /** @return array<string,string> */
     public function attributes(): array
     {
         return [
-            'client_id' => 'Client',
-            'name' => 'Le nom du chantier',
-            'description' => 'Description',
-            'start_date' => 'Date prévu de début',
-            'end_date' => 'Date prévu de fin ',
-            'priority' => 'Priorité',
-            'status' => 'WorksiteStatus',
-            'street' => 'Rue',
-            'city' => 'Ville',
-            'zip_code' => 'Code postal',
-            'country' => 'Pays',
+            'client_id'         => 'Client',
+            'name_worksite'     => 'Worksite name',
+            'description'       => 'Description',
+            'start_date'        => 'Start date',
+            'end_date'          => 'End date',
+            'worksite_priority' => 'Priority',
+            'worksite_status'   => 'Status',
+            'street'            => 'Street',
+            'city'              => 'City',
+            'zip_code'          => 'Zip code',
+            'country'           => 'Country',
         ];
     }
 }

@@ -8,45 +8,32 @@ use App\Actions\Worksite\CreateWorksiteAction;
 use App\Actions\Worksite\UpdateWorksiteAction;
 use App\Dto\WorksiteDto;
 use App\Models\Worksite;
-use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use Illuminate\Database\Eloquent\Collection;
 
 class WorksiteService
 {
-    public function list(): LengthAwarePaginator
+    // Return all worksites with their related client.
+    public function list(): Collection
     {
-        return Worksite::query()
-            ->with('client')
-            ->paginate(20
-            );
+        return Worksite::query()->with('client')->latest()->get();
     }
 
+    // Create a new worksite using the dedicated action.
     public function store(WorksiteDto $worksiteDto): Worksite
     {
-        /** @var Worksite $createWorksite */
-        $createWorksite = app()->call(CreateWorksiteAction::class, [
-            'worksiteDto' => $worksiteDto,
-        ]);
-
-        $createWorksite->refresh();
-
-        return $createWorksite;
+        return app()->call(CreateWorksiteAction::class, ['worksiteDto' => $worksiteDto]);
     }
 
-    public function update(
-        Worksite $worksite,
-        WorksiteDto $worksiteDto
-    ): Worksite {
-        /** @var Worksite $updateWorksite */
-        $updateWorksite = app()->call(UpdateWorksiteAction::class, [
-            'worksite' => $worksite,
-            'worksiteDto' => $worksiteDto,
+    // Update an existing worksite using the dedicated action.
+    public function update(Worksite $worksite, WorksiteDto $worksiteDto): Worksite
+    {
+        return app()->call(UpdateWorksiteAction::class, [
+            'worksite'     => $worksite,
+            'worksiteDto'  => $worksiteDto,
         ]);
-
-        $updateWorksite->refresh();
-
-        return $updateWorksite;
     }
 
+    // Soft-delete a worksite.
     public function destroy(Worksite $worksite): void
     {
         $worksite->delete();

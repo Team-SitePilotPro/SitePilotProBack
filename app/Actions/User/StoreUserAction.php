@@ -12,9 +12,12 @@ final class StoreUserAction
     public function __invoke(UserDto $userDto): User
     {
         return User::query()->create([
-            'name'     => $userDto->name,
-            'email'    => $userDto->email,
-            'password' => $userDto->password,
+            'first_name' => $userDto->firstName,
+            'last_name'  => $userDto->lastName,
+            'email'      => $userDto->email,
+            'phone'      => $userDto->phone,
+            'userRole'   => $userDto->userRole,
+            'password'   => $userDto->password,
         ]);
     }
 }

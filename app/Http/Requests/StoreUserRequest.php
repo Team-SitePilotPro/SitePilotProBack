@@ -1,46 +1,30 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Requests;
 
+use App\Enums\UserRole;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rules\Enum;
 
 class StoreUserRequest extends FormRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     */
     public function authorize(): bool
     {
         return true;
     }
 
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
-     */
     public function rules(): array
     {
         return [
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:users,email|max:255',
-            'password' => 'required|string|min:8|confirmed',
-        ];
-    }
-
-    /**
-     * Get custom messages for validator errors.
-     */
-    public function messages(): array
-    {
-        return [
-            'name.required' => 'Le nom est obligatoire.',
-            'email.required' => 'L\'email est obligatoire.',
-            'email.email' => 'L\'email doit être valide.',
-            'email.unique' => 'Cet email est déjà utilisé.',
-            'password.required' => 'Le mot de passe est obligatoire.',
-            'password.min' => 'Le mot de passe doit contenir au minimum 8 caractères.',
-            'password.confirmed' => 'La confirmation du mot de passe ne correspond pas.',
+            'first_name'        => ['required', 'string', 'max:255'],
+            'last_name'         => ['required', 'string', 'max:255'],
+            'email'             => ['required', 'email', 'unique:users,email', 'max:255'],
+            'phone'             => ['required', 'string', 'max:20'],
+            'password'          => ['required', 'string', 'min:8', 'confirmed'],
+            'password_confirmation' => ['required', 'string'],
+            'userRole'          => ['required', new Enum(UserRole::class)],
         ];
     }
 }

@@ -6,6 +6,7 @@ namespace App\Http\Requests;
 
 use App\Enums\ClientType;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules\Enum;
 
 class ClientRequest extends FormRequest
@@ -37,6 +38,7 @@ class ClientRequest extends FormRequest
                 'required',
                 'email',
                 'max:255',
+                Rule::unique('clients', 'email')->ignore($this->route('client')),
             ],
 
             'company' => [

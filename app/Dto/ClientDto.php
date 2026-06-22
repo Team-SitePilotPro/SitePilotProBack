@@ -9,20 +9,19 @@ use App\Enums\ClientType;
 final readonly class ClientDto
 {
     public function __construct(
-        public string $contactName,
-        public ?string $privateName,
-        public string $email,
-        public ?string $company,
-        public string $phone,
-        public string $street,
-        public string $city,
-        public int $zipCode,
-        public string $country,
-        public ClientType $clientType,
-        public string $siret,
-        public string $tvaIntra,
-    ) {
-    }
+        public readonly string $contactName,
+        public readonly ?string $name,
+        public readonly string $email,
+        public readonly ?string $company,
+        public readonly string $phone,
+        public readonly string $street,
+        public readonly string $city,
+        public readonly int $zipCode,
+        public readonly string $country,
+        public readonly ClientType $type,
+        public readonly string $siret,
+        public readonly string $tvaIntra,
+    ) {}
 
     /**
      * @param  array<string,mixed>  $data
@@ -31,7 +30,7 @@ final readonly class ClientDto
     {
         return new self(
             contactName: $data['contact_name'],
-            privateName: $data['private_name'] ?? null,
+            name: $data['private_name'] ?? null,
             email: $data['email'],
             company: $data['company'] ?? null,
             phone: $data['phone'],
@@ -39,9 +38,9 @@ final readonly class ClientDto
             city: $data['city'],
             zipCode: (int) $data['zip_code'],
             country: $data['country'],
-            clientType: $data['clientType'] instanceof ClientType
-                ? $data['clientType']
-                : ClientType::from($data['clientType']),
+            type: $data['client_type'] instanceof ClientType
+                ? $data['client_type']
+                : ClientType::from($data['client_type']),
             siret: $data['siret'],
             tvaIntra: $data['tva_intra'],
         );

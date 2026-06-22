@@ -20,15 +20,15 @@ class DatabaseSeeder extends Seeder
 {
     public function run(): void
     {
-        // ── Utilisateurs ──────────────────────────────
-        $admin = User::factory()->create();
-
-        // ── Clients ───────────────────────────────────
-        $clients = Client::factory(10)->create([
-            'user_id' => fn () => $admin->id,
+        $admin = User::factory()->create([
+            'email'    => 'admin@sitepilot.fr',
+            'password' => 'password',
         ]);
 
-        // ── Chantiers ─────────────────────────────────
+        $clients = Client::factory(10)->create([
+            'user_id' => $admin->id,
+        ]);
+
         $worksites = Worksite::factory(15)->create([
             'client_id' => fn () => $clients->random()->id,
         ]);
