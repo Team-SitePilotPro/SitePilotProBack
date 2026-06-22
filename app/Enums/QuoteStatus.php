@@ -22,5 +22,4 @@ enum QuoteStatus: string
             self::Expire => 'Expiré',
         };
     }
-
 }

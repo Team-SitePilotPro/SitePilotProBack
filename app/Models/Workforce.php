@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
 
 use Cknow\Money\Casts\MoneyIntegerCast;
@@ -11,6 +13,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
+use Override;
 
 /**
  * - Attributes.
@@ -39,11 +42,12 @@ class Workforce extends Model
      */
     protected $guarded = ['id'];
 
+    #[Override]
     protected function casts(): array
     {
         return [
-            'hr_rate'          => MoneyIntegerCast::class,
-            'cost_hr_working'  => MoneyIntegerCast::class,
+            'hr_rate' => MoneyIntegerCast::class,
+            'cost_hr_working' => MoneyIntegerCast::class,
             'additional_costs' => MoneyIntegerCast::class,
             'total_gross_cost' => MoneyIntegerCast::class,
         ];

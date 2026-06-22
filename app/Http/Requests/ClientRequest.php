@@ -4,22 +4,19 @@ declare(strict_types=1);
 
 namespace App\Http\Requests;
 
-use App\Enums\Type;
+use App\Enums\ClientType;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rules\Enum;
 
 class ClientRequest extends FormRequest
 {
-    
-    //Autorise la requête.
     public function authorize(): bool
     {
         return true;
     }
 
-    //Règles de validation des données client.
     /**
-     * @return array<string, array<int,string|Enum>>
+     * @return array<string, array<int,Enum|string>>
      */
     public function rules(): array
     {
@@ -30,7 +27,7 @@ class ClientRequest extends FormRequest
                 'max:255',
             ],
 
-            'name' => [
+            'private_name' => [
                 'nullable',
                 'string',
                 'max:255',
@@ -77,9 +74,9 @@ class ClientRequest extends FormRequest
                 'max:255',
             ],
 
-            'type' => [
+            'client_type' => [
                 'required',
-                new Enum(Type::class),
+                new Enum(ClientType::class),
             ],
 
             'siret' => [

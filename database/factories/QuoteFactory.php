@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Database\Factories;
 
 use App\Enums\QuoteStatus;
@@ -39,6 +41,7 @@ class QuoteFactory extends Factory
             'client_id' => Client::factory(),
         ];
     }
+
     public function accepted(): static
     {
         return $this->state(static fn () => ['quote_status' => QuoteStatus::Accept->value]);
@@ -49,5 +52,3 @@ class QuoteFactory extends Factory
         return $this->state(static fn () => ['quote_status' => QuoteStatus::Draft->value]);
     }
 }
-
-

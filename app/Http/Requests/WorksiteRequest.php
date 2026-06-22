@@ -4,18 +4,17 @@ declare(strict_types=1);
 
 namespace App\Http\Requests;
 
-use App\Enums\Priority;
-use App\Enums\Status;
+use App\Enums\WorksitePriority;
+use App\Enums\WorksiteStatus;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
+use Override;
 
 class WorksiteRequest extends FormRequest
 {
-
     /**
-     *
-     * @return array<string, ValidationRule|array|string>
+     * @return array<string, array|string|ValidationRule>
      */
     public function rules(): array
     {
@@ -23,9 +22,9 @@ class WorksiteRequest extends FormRequest
             'client_id' => [
                 'required',
                 'integer',
-                'exists:clients,id'
+                'exists:clients,id',
             ],
-            'name' => [
+            'name_worksite' => [
                 'nullable',
                 'string',
                 'min:2',
@@ -39,38 +38,38 @@ class WorksiteRequest extends FormRequest
             ],
             'start_date' => [
                 'nullable',
-                'date'
+                'date',
             ],
             'end_date' => [
                 'nullable',
-                'date'
+                'date',
             ],
-            'priority' => [
+            'worksite_priority' => [
                 'required',
-                Rule::enum(Priority::class)
+                Rule::enum(WorksitePriority::class),
             ],
-            'status' => [
+            'worksite_status' => [
                 'required',
-                Rule::enum(Status::class)
+                Rule::enum(WorksiteStatus::class),
             ],
             'street' => [
                 'nullable',
                 'string',
-                'max:55'
+                'max:55',
             ],
             'city' => [
                 'nullable',
                 'string',
-                'max:25'
+                'max:25',
             ],
             'zip_code' => [
                 'nullable',
-                'integer'
+                'integer',
             ],
             'country' => [
                 'nullable',
                 'string',
-                'max:25'
+                'max:25',
             ],
         ];
     }
@@ -78,6 +77,7 @@ class WorksiteRequest extends FormRequest
     /**
      * @return array<string,string>
      */
+    #[Override]
     public function attributes(): array
     {
         return [
@@ -87,7 +87,7 @@ class WorksiteRequest extends FormRequest
             'start_date' => 'Date prévu de début',
             'end_date' => 'Date prévu de fin ',
             'priority' => 'Priorité',
-            'status' => 'Status',
+            'status' => 'WorksiteStatus',
             'street' => 'Rue',
             'city' => 'Ville',
             'zip_code' => 'Code postal',
@@ -95,4 +95,3 @@ class WorksiteRequest extends FormRequest
         ];
     }
 }
-

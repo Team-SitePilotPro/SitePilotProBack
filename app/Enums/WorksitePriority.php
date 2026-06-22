@@ -20,5 +20,4 @@ enum WorksitePriority: string
             self::Critical => 'Critique',
         };
     }
-
 }

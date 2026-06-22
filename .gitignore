@@ -3,6 +3,7 @@
 .env
 .env.backup
 .env.production
+.env.testing
 .phpactor.json
 .phpunit.result.cache
 /.cursor/
@@ -16,11 +17,18 @@
 /public/build
 /public/hot
 /public/storage
+
 /storage/*.key
 /storage/pail
+/storage/tmp/
+
 /vendor
 _ide_helper.php
 Homestead.json
 Homestead.yaml
 Thumbs.db
 database/*.sqlite
+
+# Coverage
+/coverage
+.phpunit.cache

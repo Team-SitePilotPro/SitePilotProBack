@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Database\Factories;
 
 use App\Enums\PaymentMethod;
@@ -26,18 +28,18 @@ class InvoiceClientFactory extends Factory
         $total_ht = Money::EUR($this->faker->numberBetween(5000, 500000));
 
         return [
-            'delivery_date'  => $this->faker->dateTimeBetween('-6 months', 'now'),
+            'delivery_date' => $this->faker->dateTimeBetween('-6 months', 'now'),
             'number_invoice' => $this->faker->unique()->bothify('FR-####'),
-            'invoice_description'    => $this->faker->sentence(4),
-            'total_ht'       => $total_ht,
+            'invoice_description' => $this->faker->sentence(4),
+            'total_ht' => $total_ht,
             'payment_status' => $paymentStatus->value,
-            'payment_date'   => $paymentStatus === PaymentStatus::Paid
+            'payment_date' => $paymentStatus === PaymentStatus::Paid
                 ? $this->faker->dateTimeBetween('-3 months', 'now')
                 : null,
             'payment_method' => $this->faker->randomElement(PaymentMethod::cases())->value,
-            'client_id'      => Client::factory(),
-            'worksite_id'    => Worksite::factory(),
-            'quote_id'       => null,
+            'client_id' => Client::factory(),
+            'worksite_id' => Worksite::factory(),
+            'quote_id' => null,
         ];
     }
 
@@ -45,7 +47,7 @@ class InvoiceClientFactory extends Factory
     {
         return $this->state(fn () => [
             'payment_status' => PaymentStatus::Paid->value,
-            'payment_date'   => now(),
+            'payment_date' => now(),
             'payment_method' => PaymentMethod::BankTransfer->value,
         ]);
     }

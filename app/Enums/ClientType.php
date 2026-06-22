@@ -16,7 +16,6 @@ enum ClientType: string
             self::Private => 'Particulier',
         };
     }
-
 }
 
 

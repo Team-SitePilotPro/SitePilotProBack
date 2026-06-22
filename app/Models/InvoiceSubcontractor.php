@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
 
 use Cknow\Money\Casts\MoneyIntegerCast;
@@ -11,6 +13,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
+use Override;
 
 /**
  * - Attributes.
@@ -27,7 +30,6 @@ use Illuminate\Support\Collection;
  * - Relations.
  * @property Collection<int,Worksite>|null $worksite
  */
-
 class InvoiceSubcontractor extends Model
 {
     /** @use HasFactory<InvoiceSubcontractorFactory> */
@@ -38,12 +40,13 @@ class InvoiceSubcontractor extends Model
      */
     protected $guarded = ['id'];
 
+    #[Override]
     protected function casts(): array
     {
         return [
-            'delivery_date'  => 'datetime',
+            'delivery_date' => 'datetime',
             'purchase_price' => MoneyIntegerCast::class,
-            'cost_price'     => MoneyIntegerCast::class,
+            'cost_price' => MoneyIntegerCast::class,
         ];
     }
 
