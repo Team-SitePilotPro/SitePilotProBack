@@ -1,16 +1,15 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Unit;
 
 use PHPUnit\Framework\TestCase;
 
 class ExampleTest extends TestCase
 {
-    /**
-     * A basic test example.
-     */
-    public function test_that_true_is_true(): void
+    public function test_it_can_run(): void
     {
-        $this->assertTrue(true);
+        $this->assertSame(1 + 1, 2);
     }
 }
