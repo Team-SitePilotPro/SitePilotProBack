@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
@@ -14,6 +16,7 @@ class InvoiceSupplierController extends Controller
         private readonly InvoiceSupplierService $invoiceSupplierService,
     ) {
     }
+
     /**
      * Display a listing of the resource.
      */
@@ -29,7 +32,7 @@ class InvoiceSupplierController extends Controller
      */
     public function create()
     {
-        //
+
     }
 
     /**
@@ -37,7 +40,7 @@ class InvoiceSupplierController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
     }
 
     /**
@@ -45,7 +48,7 @@ class InvoiceSupplierController extends Controller
      */
     public function show(InvoiceSupplier $invoiceSupplier)
     {
-        //
+
     }
 
     /**
@@ -53,7 +56,7 @@ class InvoiceSupplierController extends Controller
      */
     public function edit(InvoiceSupplier $invoiceSupplier)
     {
-        //
+
     }
 
     /**
@@ -61,7 +64,7 @@ class InvoiceSupplierController extends Controller
      */
     public function update(Request $request, InvoiceSupplier $invoiceSupplier)
     {
-        //
+
     }
 
     /**
@@ -69,6 +72,6 @@ class InvoiceSupplierController extends Controller
      */
     public function destroy(InvoiceSupplier $invoiceSupplier)
     {
-        //
+
     }
 }

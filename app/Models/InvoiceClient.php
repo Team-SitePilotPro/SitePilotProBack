@@ -53,7 +53,7 @@ class InvoiceClient extends Model
     {
         return [
             'delivery_date' => 'datetime',
-            'total_ht' => MoneyIntegerCast::class . ':EUR',
+            'total_ht' => MoneyIntegerCast::class.':EUR',
             'tva_rate' => TvaRate::class,
             'payment_date' => 'datetime',
             'payment_status' => PaymentStatus::class,

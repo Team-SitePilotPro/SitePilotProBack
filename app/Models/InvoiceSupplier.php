@@ -45,8 +45,8 @@ class InvoiceSupplier extends Model
     {
         return [
             'delivery_date' => 'datetime',
-            'purchase_price' => MoneyIntegerCast::class . ':EUR',
-            'cost_price' => MoneyIntegerCast::class . ':EUR',
+            'purchase_price' => MoneyIntegerCast::class.':EUR',
+            'cost_price' => MoneyIntegerCast::class.':EUR',
         ];
     }
 

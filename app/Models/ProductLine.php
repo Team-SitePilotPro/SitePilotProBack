@@ -51,10 +51,10 @@ class ProductLine extends Model
     {
         return [
             'unit' => Unit::class,
-            'unit_price_ht' => MoneyIntegerCast::class . ':EUR',
+            'unit_price_ht' => MoneyIntegerCast::class.':EUR',
             'tva_rate' => TvaRate::class,
-            'total_ht' => MoneyIntegerCast::class . ':EUR',
-            'total_ttc' => MoneyIntegerCast::class . ':EUR',
+            'total_ht' => MoneyIntegerCast::class.':EUR',
+            'total_ttc' => MoneyIntegerCast::class.':EUR',
         ];
     }
 

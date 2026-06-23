@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
@@ -14,6 +16,7 @@ class InvoiceOtherController extends Controller
         private readonly InvoiceOtherService $invoiceOtherService,
     ) {
     }
+
     /**
      * Display a listing of the resource.
      */
@@ -29,7 +32,7 @@ class InvoiceOtherController extends Controller
      */
     public function create()
     {
-        //
+
     }
 
     /**
@@ -37,7 +40,7 @@ class InvoiceOtherController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
     }
 
     /**
@@ -45,7 +48,7 @@ class InvoiceOtherController extends Controller
      */
     public function show(InvoiceOther $invoiceOther)
     {
-        //
+
     }
 
     /**
@@ -53,7 +56,7 @@ class InvoiceOtherController extends Controller
      */
     public function edit(InvoiceOther $invoiceOther)
     {
-        //
+
     }
 
     /**
@@ -61,7 +64,7 @@ class InvoiceOtherController extends Controller
      */
     public function update(Request $request, InvoiceOther $invoiceOther)
     {
-        //
+
     }
 
     /**
@@ -69,6 +72,6 @@ class InvoiceOtherController extends Controller
      */
     public function destroy(InvoiceOther $invoiceOther)
     {
-        //
+
     }
 }

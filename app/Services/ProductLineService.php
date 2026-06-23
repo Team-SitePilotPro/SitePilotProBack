@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Services;
 
 use App\Models\ProductLine;
-use App\Models\Quote;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
 class ProductLineService
@@ -18,26 +17,26 @@ class ProductLineService
             );
     }
 
-//    public function store(ProductLine $productLine): Quote
-//    {
-//        /** @var ProductLine $createProductLine */
-//
-//
-//        $createProductLine->refresh();
-//
-//        return $createProductLine;
-//    }
-//
-//    public function update(
-//        ProductLine $productLine,
-//        ProductLineDto $productLineDto
-//    ): ProductLine {
-//        /** @var ProductLine $updateProductLine */
-//
-//        $updateProductLine->refresh();
-//
-//        return $updateProductLine;
-//    }
+    //    public function store(ProductLine $productLine): Quote
+    //    {
+    //        /** @var ProductLine $createProductLine */
+    //
+    //
+    //        $createProductLine->refresh();
+    //
+    //        return $createProductLine;
+    //    }
+    //
+    //    public function update(
+    //        ProductLine $productLine,
+    //        ProductLineDto $productLineDto
+    //    ): ProductLine {
+    //        /** @var ProductLine $updateProductLine */
+    //
+    //        $updateProductLine->refresh();
+    //
+    //        return $updateProductLine;
+    //    }
 
     public function destroy(ProductLine $productLine): void
     {

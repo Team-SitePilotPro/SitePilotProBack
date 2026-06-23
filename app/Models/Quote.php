@@ -58,9 +58,9 @@ class Quote extends Model
             'validity_date' => 'datetime',
             'quote_status' => QuoteStatus::class,
             'tva_rate' => TvaRate::class,
-            'subtotal_ht'   => MoneyIntegerCast::class . ':EUR',
-            'total_ttc'     => MoneyIntegerCast::class . ':EUR',
-            'tva_amount'    => MoneyIntegerCast::class . ':EUR',
+            'subtotal_ht' => MoneyIntegerCast::class.':EUR',
+            'total_ttc' => MoneyIntegerCast::class.':EUR',
+            'tva_amount' => MoneyIntegerCast::class.':EUR',
         ];
     }
 

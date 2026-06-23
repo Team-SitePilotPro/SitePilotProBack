@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Services;
 
-use App\Models\Quote;
 use App\Models\Workforce;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 

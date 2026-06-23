@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
@@ -14,6 +16,7 @@ class WorkforceController extends Controller
         private readonly WorkforceService $workforceService,
     ) {
     }
+
     /**
      * Display a listing of the resource.
      */
@@ -29,7 +32,7 @@ class WorkforceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
     }
 
     /**
@@ -37,7 +40,7 @@ class WorkforceController extends Controller
      */
     public function show(Workforce $workforce)
     {
-        //
+
     }
 
     /**
@@ -45,7 +48,7 @@ class WorkforceController extends Controller
      */
     public function edit(Workforce $workforce)
     {
-        //
+
     }
 
     /**
@@ -53,7 +56,7 @@ class WorkforceController extends Controller
      */
     public function update(Request $request, Workforce $workforce)
     {
-        //
+
     }
 
     /**
@@ -61,6 +64,6 @@ class WorkforceController extends Controller
      */
     public function destroy(Workforce $workforce)
     {
-        //
+
     }
 }

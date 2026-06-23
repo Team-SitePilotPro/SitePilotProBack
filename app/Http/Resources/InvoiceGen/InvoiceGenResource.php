@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Resources\InvoiceGen;
 
 use App\Http\Resources\Worksite\IndexWorksiteResource;
@@ -15,19 +17,19 @@ use Override;
 class InvoiceGenResource extends JsonResource
 {
     /**
-    * Transform the resource into an array.
-    *
-    * @return array<string, mixed>
-    */
+     * Transform the resource into an array.
+     *
+     * @return array<string, mixed>
+     */
     #[Override]
     public function toArray(Request $request): array
     {
-        /** @var Money|null $totalHt */
+        /** @var Money|null $purchasePrice */
         $purchasePrice = $this->resource->purchase_price;
         /** @var Money|null $cost_price */
         $cost_price = $this->resource->cost_price;
 
-        return[
+        return [
             'id' => $this->resource->id,
             'delivery_date' => $this->resource->delivery_date,
             'number_invoice' => $this->resource->number_invoice,

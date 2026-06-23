@@ -23,26 +23,26 @@ class QuoteService
             );
     }
 
-//    public function store(Quote $quote): Quote
-//    {
-//        /** @var Quote $createQuote */
-//
-//
-//        $createQuote->refresh();
-//
-//        return $createQuote;
-//    }
-//
-//    public function update(
-//        Quote $quote,
-//        QuoteDto $quoteDto
-//    ): Quote {
-//        /** @var Quote $updateQuote */
-//
-//        $updateQuote->refresh();
-//
-//        return $updateQuote;
-//    }
+    //    public function store(Quote $quote): Quote
+    //    {
+    //        /** @var Quote $createQuote */
+    //
+    //
+    //        $createQuote->refresh();
+    //
+    //        return $createQuote;
+    //    }
+    //
+    //    public function update(
+    //        Quote $quote,
+    //        QuoteDto $quoteDto
+    //    ): Quote {
+    //        /** @var Quote $updateQuote */
+    //
+    //        $updateQuote->refresh();
+    //
+    //        return $updateQuote;
+    //    }
 
     public function destroy(Quote $quote): void
     {

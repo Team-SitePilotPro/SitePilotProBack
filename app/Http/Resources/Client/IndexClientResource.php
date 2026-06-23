@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Http\Resources\Client;
 
-use App\Http\Resources\Worksite\ShowWorksiteResource;
 use App\Models\Client;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;

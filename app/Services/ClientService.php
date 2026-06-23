@@ -6,7 +6,6 @@ namespace App\Services;
 
 use App\Dto\ClientDto;
 use App\Models\Client;
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Pagination\LengthAwarePaginator;
 
 class ClientService

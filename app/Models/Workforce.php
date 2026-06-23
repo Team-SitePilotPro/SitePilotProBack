@@ -47,10 +47,10 @@ class Workforce extends Model
     protected function casts(): array
     {
         return [
-            'hr_rate' => MoneyIntegerCast::class . ':EUR',
-            'cost_hr_working' => MoneyIntegerCast::class . ':EUR',
-            'additional_costs' => MoneyIntegerCast::class . ':EUR',
-            'total_gross_cost' => MoneyIntegerCast::class . ':EUR',
+            'hr_rate' => MoneyIntegerCast::class.':EUR',
+            'cost_hr_working' => MoneyIntegerCast::class.':EUR',
+            'additional_costs' => MoneyIntegerCast::class.':EUR',
+            'total_gross_cost' => MoneyIntegerCast::class.':EUR',
         ];
     }
 
