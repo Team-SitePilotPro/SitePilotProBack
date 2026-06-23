@@ -24,7 +24,7 @@ export default {
 
         // ─── Scope ──────────────────────────────
         'scope-empty': [2, 'never'],
-        'scope-case': [2, 'always', 'lower-case'],
+        'scope-case': [1, 'always', 'lower-case'],
         'scope-enum': [0],
 
         // ─── Subject ────────────────────────────
