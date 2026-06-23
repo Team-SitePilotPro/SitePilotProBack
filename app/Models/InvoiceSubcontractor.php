@@ -45,8 +45,8 @@ class InvoiceSubcontractor extends Model
     {
         return [
             'delivery_date' => 'datetime',
-            'purchase_price' => MoneyIntegerCast::class,
-            'cost_price' => MoneyIntegerCast::class,
+            'purchase_price' => MoneyIntegerCast::class . ':EUR',
+            'cost_price' => MoneyIntegerCast::class . ':EUR',
         ];
     }
 

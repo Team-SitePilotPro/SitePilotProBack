@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\InvoiceOther\InvoiceOtherResource;
+use App\Http\Resources\InvoiceGen\InvoiceGenResource;
 use App\Models\InvoiceOther;
 use App\Services\InvoiceOtherService;
 use Illuminate\Http\Request;
@@ -19,7 +19,7 @@ class InvoiceOtherController extends Controller
      */
     public function index()
     {
-        return InvoiceOtherResource::collection(
+        return InvoiceGenResource::collection(
             $this->invoiceOtherService->list()
         )->response();
     }

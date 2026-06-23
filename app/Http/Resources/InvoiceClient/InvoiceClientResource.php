@@ -34,12 +34,10 @@ final class InvoiceClientResource extends JsonResource
             'delivery_date' => $this->resource->delivery_date,
             'number_invoice' => $this->resource->number_invoice,
             'invoice_description' => $this->resource->invoice_description,
-            'total_ht'     => $totalHt->getAmount(),
+            'total_ht'     => $totalHt,
             'payment_date' => $this->resource->payment_date,
             'payment_status' => $this->resource->payment_status->title(),
             'payment_method' => $this->resource->payment_method?->title(),
-            'created_at' => $this->resource->created_at,
-            'updated_at' => $this->resource->updated_at,
             'client' => $this
                 ->whenLoaded(
                     'client',

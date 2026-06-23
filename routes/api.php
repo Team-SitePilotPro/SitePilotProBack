@@ -40,7 +40,7 @@ Route::prefix('v1')->name('v1.')->group(function (): void {
     Route::apiResource('invoice_others', InvoiceOtherController::class)
         ->only('index');
 
-    Route::apiResource('invoice_Subcontractors', InvoiceSubcontractorController::class)
+    Route::apiResource('invoice_subcontractors', InvoiceSubcontractorController::class)
         ->only('index');
 
     Route::apiResource('invoice_suppliers', InvoiceSupplierController::class)

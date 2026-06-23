@@ -3,17 +3,25 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\Quote\QuoteResource;
 use App\Models\Quote;
+use App\Services\QuoteService;
 use Illuminate\Http\Request;
 
 class QuoteController extends Controller
 {
+    public function __construct(
+        private readonly QuoteService $quoteService,
+    ) {
+    }
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        return QuoteResource::collection(
+            $this->quoteService->list()
+        )->response();
     }
 
     /**

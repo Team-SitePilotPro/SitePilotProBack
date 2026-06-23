@@ -3,17 +3,25 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\ProductLine\IndexProductLineResource;
 use App\Models\ProductLine;
+use App\Services\ProductLineService;
 use Illuminate\Http\Request;
 
 class ProductLineController extends Controller
 {
+    public function __construct(
+        private readonly ProductLineService $productLineService,
+    ) {
+    }
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        return IndexProductLineResource::collection(
+            $this->productLineService->list()
+        )->response();
     }
 
     /**

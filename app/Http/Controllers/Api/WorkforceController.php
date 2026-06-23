@@ -3,25 +3,25 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\Workforce\IndexWorkforceResource;
 use App\Models\Workforce;
+use App\Services\WorkforceService;
 use Illuminate\Http\Request;
 
 class WorkforceController extends Controller
 {
+    public function __construct(
+        private readonly WorkforceService $workforceService,
+    ) {
+    }
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+        return IndexWorkforceResource::collection(
+            $this->workforceService->list()
+        )->response();
     }
 
     /**

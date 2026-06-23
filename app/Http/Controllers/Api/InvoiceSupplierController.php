@@ -3,17 +3,25 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\InvoiceGen\InvoiceGenResource;
 use App\Models\InvoiceSupplier;
+use App\Services\InvoiceSupplierService;
 use Illuminate\Http\Request;
 
 class InvoiceSupplierController extends Controller
 {
+    public function __construct(
+        private readonly InvoiceSupplierService $invoiceSupplierService,
+    ) {
+    }
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        return InvoiceGenResource::collection(
+            $this->invoiceSupplierService->list()
+        )->response();
     }
 
     /**

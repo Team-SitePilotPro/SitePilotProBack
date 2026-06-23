@@ -19,6 +19,7 @@ use Override;
  * - Attributes.
  *
  * @property int $id
+ * @property int $worksite_id
  * @property string $code
  * @property string $worker
  * @property int $hr_working
@@ -46,10 +47,10 @@ class Workforce extends Model
     protected function casts(): array
     {
         return [
-            'hr_rate' => MoneyIntegerCast::class,
-            'cost_hr_working' => MoneyIntegerCast::class,
-            'additional_costs' => MoneyIntegerCast::class,
-            'total_gross_cost' => MoneyIntegerCast::class,
+            'hr_rate' => MoneyIntegerCast::class . ':EUR',
+            'cost_hr_working' => MoneyIntegerCast::class . ':EUR',
+            'additional_costs' => MoneyIntegerCast::class . ':EUR',
+            'total_gross_cost' => MoneyIntegerCast::class . ':EUR',
         ];
     }
 
