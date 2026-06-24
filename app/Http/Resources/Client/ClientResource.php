@@ -24,7 +24,7 @@ final class ClientResource extends JsonResource
         return [
             'id' => $this->resource->id,
             'contact_name' => $this->resource->contact_name,
-            'private_name' => $this->resource->private_name,
+            'private_name' => $this->resource->name,
             'email' => $this->resource->email,
             'company' => $this->resource->company,
             'phone' => $this->resource->phone,
@@ -32,7 +32,7 @@ final class ClientResource extends JsonResource
             'city' => $this->resource->city,
             'zip_code' => $this->resource->zip_code,
             'country' => $this->resource->country,
-            'clientType' => $this->resource->clientType,
+            'clientType' => $this->resource->type,
             'siret' => $this->resource->siret,
             'tva_intra' => $this->resource->tva_intra,
             'worksites' => $this->whenLoaded(

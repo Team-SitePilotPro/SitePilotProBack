@@ -85,12 +85,14 @@ class ClientRequest extends FormRequest
                 'required',
                 'string',
                 'max:14',
+                Rule::unique('clients', 'siret')->ignore($this->route('client')),
             ],
 
             'tva_intra' => [
                 'required',
                 'string',
                 'max:255',
+                Rule::unique('clients', 'tva_intra')->ignore($this->route('client')),
             ],
         ];
     }
