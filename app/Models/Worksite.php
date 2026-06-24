@@ -36,6 +36,13 @@ use Override;
  *
  * - Relations.
  * @property Client $client
+ * @property User $users
+ * @property Quote $quotes
+ * @property InvoiceClient $invoiceClients
+ * @property InvoiceSupplier $invoiceSuppliers
+ * @property InvoiceSubcontractor $invoiceSubcontractors
+ * @property InvoiceOther $invoiceOthers
+ * @property Workforce $workforce
  */
 class Worksite extends Model
 {
@@ -75,22 +82,22 @@ class Worksite extends Model
             ->withTimestamps();
     }
 
-    public function invoicesClient(): HasMany
+    public function invoiceClients(): HasMany
     {
         return $this->hasMany(InvoiceClient::class);
     }
 
-    public function invoicesSupplier(): HasMany
+    public function invoiceSuppliers(): HasMany
     {
         return $this->hasMany(InvoiceSupplier::class);
     }
 
-    public function invoicesSubcontractor(): HasMany
+    public function invoiceSubcontractors(): HasMany
     {
         return $this->hasMany(InvoiceSubcontractor::class);
     }
 
-    public function invoicesOther(): HasMany
+    public function invoiceOthers(): HasMany
     {
         return $this->hasMany(InvoiceOther::class);
     }
