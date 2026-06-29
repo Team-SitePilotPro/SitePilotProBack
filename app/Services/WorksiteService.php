@@ -16,6 +16,7 @@ class WorksiteService
     {
         return Worksite::query()
             ->with('client')
+            ->latest()
             ->paginate(20
             );
     }

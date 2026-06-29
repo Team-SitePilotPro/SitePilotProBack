@@ -6,6 +6,7 @@ namespace App\Models;
 
 use App\Enums\PaymentMethod;
 use App\Enums\PaymentStatus;
+use App\Enums\TvaRate;
 use Cknow\Money\Casts\MoneyIntegerCast;
 use Cknow\Money\Money;
 use Database\Factories\InvoiceClientFactory;
@@ -21,10 +22,14 @@ use Override;
  * - Attributes.
  *
  * @property int $id
+ * @property int $client_id
+ * @property int $worksite_id
+ * @property int|null $quote_id
  * @property Carbon $delivery_date
  * @property string $number_invoice
  * @property string $invoice_description
  * @property Money $total_ht
+ * @property TvaRate $tva_rate
  * @property Carbon|null $payment_date
  * @property PaymentStatus $payment_status
  * @property PaymentMethod|null $payment_method
@@ -51,7 +56,8 @@ class InvoiceClient extends Model
     {
         return [
             'delivery_date' => 'datetime',
-            'total_ht' => MoneyIntegerCast::class,
+            'total_ht' => MoneyIntegerCast::class.':EUR',
+            'tva_rate' => TvaRate::class,
             'payment_date' => 'datetime',
             'payment_status' => PaymentStatus::class,
             'payment_method' => PaymentMethod::class,

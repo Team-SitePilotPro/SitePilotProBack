@@ -35,6 +35,9 @@ use Override;
  *
  * - Relations.
  * @property Client $client
+ * @property ProductLine $productLines
+ * @property Worksite $worksites
+ * @property InvoiceClient $invoicesClients
  */
 class Quote extends Model
 {
@@ -55,9 +58,9 @@ class Quote extends Model
             'validity_date' => 'datetime',
             'quote_status' => QuoteStatus::class,
             'tva_rate' => TvaRate::class,
-            'subtotal_ht' => MoneyIntegerCast::class,
-            'total_ttc' => MoneyIntegerCast::class,
-            'tva_amount' => MoneyIntegerCast::class,
+            'subtotal_ht' => MoneyIntegerCast::class.':EUR',
+            'total_ttc' => MoneyIntegerCast::class.':EUR',
+            'tva_amount' => MoneyIntegerCast::class.':EUR',
         ];
     }
 
@@ -77,7 +80,7 @@ class Quote extends Model
             ->withTimestamps();
     }
 
-    public function invoicesClient(): HasMany
+    public function invoicesClients(): HasMany
     {
         return $this->hasMany(InvoiceClient::class);
     }

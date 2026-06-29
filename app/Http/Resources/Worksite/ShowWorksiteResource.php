@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Resources\Worksite;
 
-use App\Http\Resources\Client\ClientResource;
+use App\Http\Resources\Client\ShowClientResource;
 use App\Models\Worksite;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
@@ -13,7 +13,7 @@ use Override;
 /**
  * @property Worksite $resource
  */
-final class WorksiteResource extends JsonResource
+final class ShowWorksiteResource extends JsonResource
 {
     /**
      * @return array<string, mixed>
@@ -25,8 +25,8 @@ final class WorksiteResource extends JsonResource
             'id' => $this->resource->id,
             'client' => $this
                 ->whenLoaded(
-                    'clients',
-                    fn () => ClientResource::collection($this->resource->client)),
+                    'client',
+                    fn () => ShowClientResource::make($this->resource->client)),
             'code' => $this->resource->code,
             'name_worksite' => $this->resource->name_worksite,
             'description' => $this->resource->description,

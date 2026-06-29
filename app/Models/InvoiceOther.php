@@ -19,9 +19,10 @@ use Override;
  * - Attributes.
  *
  * @property int $id
+ * @property int $worksite_id
  * @property Carbon $delivery_date
  * @property string $number_invoice
- * @property string $Invoice_description
+ * @property string $invoice_description
  * @property Money $purchase_price
  * @property Money $cost_price
  * @property Carbon $created_at
@@ -45,8 +46,8 @@ class InvoiceOther extends Model
     {
         return [
             'delivery_date' => 'datetime',
-            'purchase_price' => MoneyIntegerCast::class,
-            'cost_price' => MoneyIntegerCast::class,
+            'purchase_price' => MoneyIntegerCast::class.':EUR',
+            'cost_price' => MoneyIntegerCast::class.':EUR',
         ];
     }
 
