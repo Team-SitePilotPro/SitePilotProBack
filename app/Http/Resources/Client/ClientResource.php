@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Resources\Client;
 
-use App\Http\Resources\Worksite\ShowWorksiteResource;
+use App\Http\Resources\Worksite\WorksiteResource;
 use App\Models\Client;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
@@ -13,7 +13,7 @@ use Override;
 /**
  * @property Client $resource
  */
-final class ShowClientResource extends JsonResource
+final class ClientResource extends JsonResource
 {
     /**
      * @return array<string,mixed>
@@ -37,7 +37,7 @@ final class ShowClientResource extends JsonResource
             'tva_intra' => $this->resource->tva_intra,
             'worksites' => $this->whenLoaded(
                 'worksites',
-                fn () => ShowWorksiteResource::collection($this->resource->worksites)),
+                fn () => WorksiteResource::collection($this->resource->worksites)),
         ];
     }
 }

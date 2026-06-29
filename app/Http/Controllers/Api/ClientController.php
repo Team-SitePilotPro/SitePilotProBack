@@ -7,8 +7,7 @@ namespace App\Http\Controllers\Api;
 use App\Dto\ClientDto;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ClientRequest;
-use App\Http\Resources\Client\IndexClientResource;
-use App\Http\Resources\Client\ShowClientResource;
+use App\Http\Resources\Client\ClientResource;
 use App\Models\Client;
 use App\Services\ClientService;
 use Illuminate\Http\JsonResponse;
@@ -24,14 +23,14 @@ class ClientController extends Controller
 
     public function index(): JsonResponse
     {
-        return IndexClientResource::collection(
+        return ClientResource::collection(
             $this->clientService->list()
         )->response();
     }
 
     public function show(Client $client): JsonResponse
     {
-        return ShowClientResource::make($client)->response();
+        return ClientResource::make($client)->response();
     }
 
     public function store(ClientRequest $clientRequest): JsonResponse
@@ -45,7 +44,7 @@ class ClientController extends Controller
             )
         );
 
-        return IndexClientResource::make($createdClient)
+        return ClientResource::make($createdClient)
             ->response()
             ->setStatusCode(Response::HTTP_CREATED);
     }
@@ -66,7 +65,7 @@ class ClientController extends Controller
             )
         );
 
-        return IndexClientResource::make($updatedClient)
+        return ClientResource::make($updatedClient)
             ->response();
     }
 

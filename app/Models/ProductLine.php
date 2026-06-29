@@ -20,7 +20,6 @@ use Override;
  * - Attributes.
  *
  * @property int $id
- * @property int $quote_id
  * @property string $description
  * @property int $quantity
  * @property Unit $unit
@@ -51,10 +50,10 @@ class ProductLine extends Model
     {
         return [
             'unit' => Unit::class,
-            'unit_price_ht' => MoneyIntegerCast::class.':EUR',
+            'unit_price_ht' => MoneyIntegerCast::class,
             'tva_rate' => TvaRate::class,
-            'total_ht' => MoneyIntegerCast::class.':EUR',
-            'total_ttc' => MoneyIntegerCast::class.':EUR',
+            'total_ht' => MoneyIntegerCast::class,
+            'total_ttc' => MoneyIntegerCast::class,
         ];
     }
 

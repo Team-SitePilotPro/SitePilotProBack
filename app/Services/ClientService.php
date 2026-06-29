@@ -6,16 +6,16 @@ namespace App\Services;
 
 use App\Dto\ClientDto;
 use App\Models\Client;
-use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Database\Eloquent\Collection;
 
 class ClientService
 {
     // Retourne la liste de tous les clients.
-    public function list(): LengthAwarePaginator
+    public function list(): Collection
     {
         return Client::query()
             ->latest()
-            ->paginate(20);
+            ->get();
     }
 
     // Crée un nouveau client.
@@ -37,6 +37,7 @@ class ClientService
         ]);
     }
 
+    // Met à jour un client existant.
     public function update(Client $client, ClientDto $clientDto): Client
     {
         $client->update([
