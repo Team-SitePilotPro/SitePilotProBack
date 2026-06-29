@@ -19,6 +19,7 @@ use Override;
  * - Attributes.
  *
  * @property int $id
+ * @property int $worksite_id
  * @property Carbon $delivery_date
  * @property string $number_invoice
  * @property string $invoice_description

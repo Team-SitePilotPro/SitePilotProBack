@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Resources\InvoiceClient;
 
 use App\Http\Resources\Client\IndexClientResource;
-use App\Http\Resources\Quote\QuoteResource;
+use App\Http\Resources\Quote\IndexQuoteResource;
 use App\Http\Resources\Worksite\IndexWorksiteResource;
 use App\Models\InvoiceClient;
 use Illuminate\Http\Request;
@@ -49,7 +49,7 @@ final class InvoiceClientResource extends JsonResource
             'quote' => $this
                 ->whenLoaded(
                     'quote',
-                    fn () => QuoteResource::collection($this->resource->quote)),
+                    fn () => IndexQuoteResource::collection($this->resource->quote)),
         ];
     }
 }
