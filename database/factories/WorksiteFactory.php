@@ -6,7 +6,6 @@ namespace Database\Factories;
 
 use App\Enums\WorksitePriority;
 use App\Enums\WorksiteStatus;
-use App\Models\Client;
 use App\Models\Worksite;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -34,7 +33,6 @@ class WorksiteFactory extends Factory
             'city' => $this->faker->city(),
             'zip_code' => $this->faker->postcode(),
             'country' => $this->faker->country(),
-            'client_id' => Client::factory(),
         ];
     }
 
