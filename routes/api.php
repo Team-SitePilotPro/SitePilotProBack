@@ -14,9 +14,10 @@ use App\Http\Controllers\Api\WorksiteController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/user', fn (Request $request) => $request->user())->middleware('auth:sanctum');
-
 Route::prefix('v1')->name('v1.')->group(function (): void {
+
+    Route::get('user', fn (Request $request) => $request->user())
+        ->middleware('auth:sanctum');
 
     Route::apiResource('worksites', WorksiteController::class)
         ->parameter('worksites', 'worksite_id')
@@ -30,9 +31,9 @@ Route::prefix('v1')->name('v1.')->group(function (): void {
         ->parameter('quotes', 'quote_id')
         ->whereNumber('quote_id');
 
-    Route::apiResource('ProductLines', ProductLineController::class)
-        ->parameter('ProductLines', 'ProductLine_id')
-        ->whereNumber('ProductLine_id');
+    Route::apiResource('product_lines', ProductLineController::class)
+        ->parameter('product_lines', 'product_line_id')
+        ->whereNumber('product_line_id');
 
     Route::apiResource('invoice_clients', InvoiceClientController::class)
         ->only('index');

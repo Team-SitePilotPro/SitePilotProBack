@@ -5,7 +5,8 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\Quote\QuoteResource;
+use App\Http\Resources\Quote\IndexQuoteResource;
+use App\Http\Resources\Quote\ShowQuoteResource;
 use App\Models\Quote;
 use App\Services\QuoteService;
 use Illuminate\Http\Request;
@@ -22,7 +23,7 @@ class QuoteController extends Controller
      */
     public function index()
     {
-        return QuoteResource::collection(
+        return IndexQuoteResource::collection(
             $this->quoteService->list()
         )->response();
     }
@@ -46,8 +47,14 @@ class QuoteController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Quote $quote)
+    public function show(int $quote_id)
     {
+        /** @var Quote $quote */
+        $quote = Quote::query()->findOrFail($quote_id);
+
+        $quote->loadMissing('client', 'worksites', 'productLines');
+
+        return ShowQuoteResource::make($quote)->response();
 
     }
 

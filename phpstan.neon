@@ -6,6 +6,11 @@ parameters:
 
     tmpDir: storage/tmp/phpstan
 
+    ignoreErrors:
+        -
+            identifier: property.onlyWritten
+            path: tests/*
+
     paths:
         #---- Legacy Controllers
         - app/Http/Controllers/Api
@@ -31,3 +36,4 @@ parameters:
         - routes
         #---- Tests
         - tests
+
