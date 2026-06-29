@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use App\Enums\PaymentMethod;
 use App\Enums\PaymentStatus;
+use App\Enums\TvaRate;
 use App\Models\Client;
 use App\Models\Quote;
 use App\Models\Worksite;
@@ -34,6 +35,8 @@ return new class() extends Migration
             $table->string('number_invoice');
             $table->string('invoice_description');
             $table->integer('total_ht');
+            $table->enum('tva_rate', array_column(TvaRate::cases(), 'value')
+            )->default(TvaRate::Taux20->value);
             $table->enum('payment_status', array_column(PaymentStatus::cases(), 'value')
             )->default(PaymentStatus::Pending->value);
             $table->dateTime('payment_date')->nullable();

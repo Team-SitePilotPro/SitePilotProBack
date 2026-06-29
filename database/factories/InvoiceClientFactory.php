@@ -6,6 +6,7 @@ namespace Database\Factories;
 
 use App\Enums\PaymentMethod;
 use App\Enums\PaymentStatus;
+use App\Enums\TvaRate;
 use App\Models\Client;
 use App\Models\InvoiceClient;
 use App\Models\Worksite;
@@ -32,6 +33,7 @@ class InvoiceClientFactory extends Factory
             'number_invoice' => $this->faker->unique()->bothify('FR-####'),
             'invoice_description' => $this->faker->sentence(4),
             'total_ht' => $total_ht,
+            'tva_rate' => $this->faker->randomElement(TvaRate::cases()),
             'payment_status' => $paymentStatus->value,
             'payment_date' => $paymentStatus === PaymentStatus::Paid
                 ? $this->faker->dateTimeBetween('-3 months', 'now')

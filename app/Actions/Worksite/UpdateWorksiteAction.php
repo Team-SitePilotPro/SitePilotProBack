@@ -17,7 +17,7 @@ final class UpdateWorksiteAction
         Worksite $worksite,
         WorksiteDto $worksiteDto,
     ): Worksite {
-        $worksite->query()->update([
+        $worksite->update([
             'client_id' => $worksiteDto->client_id,
             'code' => $worksiteDto->code ?? 'FR'.random_int(10000, 99999).'A',
             'name_worksite' => $worksiteDto->nameWorksite,
